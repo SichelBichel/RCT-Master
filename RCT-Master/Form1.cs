@@ -1,3 +1,5 @@
+using System.Windows.Forms;
+
 namespace RCT_Master
 {
     public partial class Form1 : Form
@@ -27,16 +29,67 @@ namespace RCT_Master
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void save_CFG(object sender, EventArgs e)
         {
-            ConsoleOutput.SelectionColor = Color.Green;
-            ConsoleOutput.AppendText("TST Applied\n");
+            AppendBlankText("Saving CFG...");
+            Config config = new Config
+            {
+                HostName = richTextHostname.Text,
+                SlaveIP = richTextSlaveIP.Text,
+                SlavePort = int.Parse(richTextSlavePort.Text),
+                Token = richTextToken.Text
+            };
+            Program.SaveConfigFile(config, "config.xml");
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void reload_CFG(object sender, EventArgs e)
         {
-            ConsoleOutput.SelectionColor = Color.Red;
-            ConsoleOutput.AppendText("TST LOADED\n");
+            AppendBlankText("Reloading CFG...");
+            Config config = Program.LoadConfig("config.xml");
+
+            if (config != null)
+            {
+                richTextHostname.Text = config.HostName;
+                richTextSlaveIP.Text = config.SlaveIP;
+                richTextSlavePort.Text = config.SlavePort.ToString();
+                richTextToken.Text = config.Token;
+                AppendSuccess("CFG loaded and applied");
+            }
+            else
+            {
+                AppendError("CFG not loaded");
+            }
         }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+        public void AppendError(string errorText)
+        {
+            ConsoleOutput.SelectionColor = System.Drawing.Color.Red;
+            ConsoleOutput.AppendText(errorText + "\n");
+        }
+        public void AppendSuccess(string successText)
+        {
+            ConsoleOutput.SelectionColor = System.Drawing.Color.LightGreen;
+            ConsoleOutput.AppendText(successText + "\n");
+        }
+        public void AppendInfoText(string infoText)
+        {
+            ConsoleOutput.SelectionColor = System.Drawing.Color.LightYellow;
+            ConsoleOutput.AppendText(infoText + "\n");
+        }
+        public void AppendBlankText(string blankText)
+        {
+            ConsoleOutput.SelectionColor = System.Drawing.Color.White;
+            ConsoleOutput.AppendText(blankText + "\n");
+        }
+
     }
 }
