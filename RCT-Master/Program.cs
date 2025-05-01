@@ -1,4 +1,5 @@
 using System.Net.Sockets;
+using System.Security.Cryptography.Pkcs;
 using System.Text;
 using System.Xml.Serialization;
 
@@ -32,19 +33,23 @@ namespace RCT_Master
 
             string token = "1234";
             string app = "NotePad";
+            string hashKey = "c71ee8230724cc1eef15740fba8506a2";
             form.Text = ("RCT Master:" + hostName);
-
-            SendMessage(serverIp, serverPort, token, app);
+            Thread.Sleep(1000);
+            LoadConfig("config.xml");
+            //SendMessage(serverIp, serverPort, token, app);
         }
 
-        public static void SendMessage(string serverIp, int serverPort, string token, string app)
+
+
+        public static void SendMessage(string serverIp, int serverPort, string token, string app, string hashKey)
         {
             try
             {
                 using (TcpClient client = new TcpClient(serverIp, serverPort))
                 {
                     NetworkStream stream = client.GetStream();
-                    string message = $"{token}-{app}";
+                    string message = $"{hashKey}-{token}-{app}";
                     byte[] data = Encoding.UTF8.GetBytes(message);
 
                     // send

@@ -7,6 +7,7 @@ namespace RCT_Master
         public Form1()
         {
             InitializeComponent();
+            PostInit();
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
@@ -29,6 +30,13 @@ namespace RCT_Master
 
         }
 
+        private async void PostInit()
+        {
+
+            await Task.Delay(100);
+            reload_CFG(null, null);
+
+        }
         private void save_CFG(object sender, EventArgs e)
         {
             AppendBlankText("Saving CFG...");
