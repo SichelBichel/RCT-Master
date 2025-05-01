@@ -16,14 +16,13 @@ namespace RCT_Master
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
 
-            // Beispiel: Server-Ip und -Port
+            // Slave Data
             string serverIp = "127.0.0.1";
             int serverPort = 5000;
 
             string token = "1234";
             string app = "NotePad";
 
-            // Nachricht senden
             SendMessage(serverIp, serverPort, token, app);
         }
 
@@ -37,14 +36,15 @@ namespace RCT_Master
                     string message = $"{token}-{app}";
                     byte[] data = Encoding.UTF8.GetBytes(message);
 
-                    // Nachricht senden
+                    // send
                     stream.Write(data, 0, data.Length);
-                    Console.WriteLine($"Nachricht gesendet: {message}");
+                    Console.WriteLine($"Msg Sent: {message}");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Fehler: {ex.Message}");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Error: {ex.Message}");
             }
         }
     }
