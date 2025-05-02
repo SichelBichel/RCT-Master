@@ -2,15 +2,12 @@ using System.Net.Sockets;
 using System.Security.Cryptography.Pkcs;
 using System.Text;
 using System.Xml.Serialization;
+using System.Security.Cryptography;
 
 namespace RCT_Master
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
-        /// 
         public static Form1 form;
 
         public static string hostName = "EnterTargetHostname";
@@ -27,14 +24,13 @@ namespace RCT_Master
             ApplicationConfiguration.Initialize();
             form = new Form1();
             Application.Run(form);
-           
-
-            //SendMessage(serverIp, serverPort, token, app, hashKey);
         }
 
 
 
-        //MSG Send
+        //##############################
+        //         Message Handler
+        //##############################
         public static void SendMessage(string content)
         {
             try
@@ -43,7 +39,11 @@ namespace RCT_Master
                 {
                     NetworkStream stream = client.GetStream();
                     string message = $"{hashKey}-{token}-{content}";
-                    byte[] data = Encoding.UTF8.GetBytes(message);
+
+                    string encryptedMessage = CryptoCore.Encrypt(message);
+
+
+                    byte[] data = Encoding.UTF8.GetBytes(encryptedMessage);
 
                     // send
                     stream.Write(data, 0, data.Length);
@@ -57,6 +57,13 @@ namespace RCT_Master
             }
         }
 
+
+
+
+
+        //##############################
+        //         Read/Write
+        //##############################
         //CFG Loader
         public static Config LoadConfig(string filePath)
         {
