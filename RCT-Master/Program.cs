@@ -82,7 +82,7 @@ namespace RCT_Master
                         serverIp = config.SlaveIP;
                         serverPort = config.SlavePort;
                         token = config.Token;
-                        form.Text = ("RTC Master: " + hostName);
+                        form.Text = ("RCT-Master: " + hostName);
                         form.LogToFile("[LOG READ CONTENT] " + serverIp + ":" + serverPort + ":" + token + ":" + hostName + "[LOG READ CONTENT]");
                         return config;
                     }
