@@ -66,9 +66,9 @@
             eventButton10 = new Button();
             eventButton11 = new Button();
             eventButton12 = new Button();
-            linkLabel1 = new LinkLabel();
             eventButton13 = new Button();
             eventButton14 = new Button();
+            linkLabel1 = new LinkLabel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -351,6 +351,7 @@
             eventButton1.TabIndex = 7;
             eventButton1.Text = "1";
             eventButton1.UseVisualStyleBackColor = true;
+            eventButton1.Click += buttonAction1;
             // 
             // eventButton2
             // 
@@ -360,6 +361,7 @@
             eventButton2.TabIndex = 8;
             eventButton2.Text = "2";
             eventButton2.UseVisualStyleBackColor = true;
+            eventButton2.Click += buttonAction2;
             // 
             // eventButton3
             // 
@@ -369,6 +371,7 @@
             eventButton3.TabIndex = 9;
             eventButton3.Text = "3";
             eventButton3.UseVisualStyleBackColor = true;
+            eventButton3.Click += buttonAction3;
             // 
             // eventButton4
             // 
@@ -378,6 +381,7 @@
             eventButton4.TabIndex = 10;
             eventButton4.Text = "4";
             eventButton4.UseVisualStyleBackColor = true;
+            eventButton4.Click += buttonAction4;
             // 
             // eventButton5
             // 
@@ -387,6 +391,7 @@
             eventButton5.TabIndex = 11;
             eventButton5.Text = "5";
             eventButton5.UseVisualStyleBackColor = true;
+            eventButton5.Click += buttonAction5;
             // 
             // eventButton6
             // 
@@ -396,6 +401,7 @@
             eventButton6.TabIndex = 12;
             eventButton6.Text = "6";
             eventButton6.UseVisualStyleBackColor = true;
+            eventButton6.Click += buttonAction6;
             // 
             // eventButton7
             // 
@@ -405,6 +411,7 @@
             eventButton7.TabIndex = 13;
             eventButton7.Text = "7";
             eventButton7.UseVisualStyleBackColor = true;
+            eventButton7.Click += buttonAction7;
             // 
             // eventButton8
             // 
@@ -414,6 +421,7 @@
             eventButton8.TabIndex = 14;
             eventButton8.Text = "8";
             eventButton8.UseVisualStyleBackColor = true;
+            eventButton8.Click += buttonAction8;
             // 
             // eventButton9
             // 
@@ -423,6 +431,7 @@
             eventButton9.TabIndex = 15;
             eventButton9.Text = "9";
             eventButton9.UseVisualStyleBackColor = true;
+            eventButton9.Click += buttonAction9;
             // 
             // eventButton10
             // 
@@ -432,6 +441,7 @@
             eventButton10.TabIndex = 16;
             eventButton10.Text = "10";
             eventButton10.UseVisualStyleBackColor = true;
+            eventButton10.Click += buttonAction10;
             // 
             // eventButton11
             // 
@@ -441,6 +451,7 @@
             eventButton11.TabIndex = 17;
             eventButton11.Text = "11";
             eventButton11.UseVisualStyleBackColor = true;
+            eventButton11.Click += buttonAction11;
             // 
             // eventButton12
             // 
@@ -450,6 +461,27 @@
             eventButton12.TabIndex = 18;
             eventButton12.Text = "12";
             eventButton12.UseVisualStyleBackColor = true;
+            eventButton12.Click += buttonAction12;
+            // 
+            // eventButton13
+            // 
+            eventButton13.Location = new Point(3, 399);
+            eventButton13.Name = "eventButton13";
+            eventButton13.Size = new Size(208, 60);
+            eventButton13.TabIndex = 19;
+            eventButton13.Text = "13";
+            eventButton13.UseVisualStyleBackColor = true;
+            eventButton13.Click += buttonAction13;
+            // 
+            // eventButton14
+            // 
+            eventButton14.Location = new Point(217, 399);
+            eventButton14.Name = "eventButton14";
+            eventButton14.Size = new Size(208, 60);
+            eventButton14.TabIndex = 20;
+            eventButton14.Text = "14";
+            eventButton14.UseVisualStyleBackColor = true;
+            eventButton14.Click += buttonAction14;
             // 
             // linkLabel1
             // 
@@ -462,24 +494,6 @@
             linkLabel1.TabStop = true;
             linkLabel1.Text = "https://rehoga-interactive.com/";
             linkLabel1.Click += openWebsite;
-            // 
-            // eventButton13
-            // 
-            eventButton13.Location = new Point(3, 399);
-            eventButton13.Name = "eventButton13";
-            eventButton13.Size = new Size(208, 60);
-            eventButton13.TabIndex = 19;
-            eventButton13.Text = "13";
-            eventButton13.UseVisualStyleBackColor = true;
-            // 
-            // eventButton14
-            // 
-            eventButton14.Location = new Point(217, 399);
-            eventButton14.Name = "eventButton14";
-            eventButton14.Size = new Size(208, 60);
-            eventButton14.TabIndex = 20;
-            eventButton14.Text = "14";
-            eventButton14.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
