@@ -79,7 +79,7 @@ namespace RCT_Master
         //         Read/Write
         //##############################
         //CFG Loader
-        public static Config LoadConfig(string filePath)
+        public static Config LoadConfig(string filePath, bool silentMode)
         {
             try
             {
@@ -94,6 +94,10 @@ namespace RCT_Master
                         form.AppendSuccess("config.xml loaded and applied!");
                         hostName = config.HostName;
                         serverIp = config.SlaveIP;
+                        if (silentMode == true)
+                        {
+                            form.AppendWarning("STEALTH");
+                        }
                         serverPort = config.SlavePort;
                         token = config.Token;
                         readbackPort = config.SlavePort + 1;
@@ -133,6 +137,7 @@ namespace RCT_Master
                     serverIp = config.SlaveIP;
                     serverPort = config.SlavePort;
                     token = config.Token;
+                    LoadConfig("config.xml", true);
                     // Die Buttons auslesen und in die Config setzen
 
 

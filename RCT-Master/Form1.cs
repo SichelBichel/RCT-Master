@@ -101,7 +101,7 @@ namespace RCT_Master
         private async void reload_CFG(object sender, EventArgs e)
         {
             AppendInfoText("Reloading config.xml ...");
-            Config config = Program.LoadConfig("config.xml");
+            Config config = Program.LoadConfig("config.xml", false);
 
             if (config != null)
             {
