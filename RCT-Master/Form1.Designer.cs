@@ -248,6 +248,7 @@
             ConsoleOutput.ForeColor = SystemColors.Window;
             ConsoleOutput.Location = new Point(667, 13);
             ConsoleOutput.Name = "ConsoleOutput";
+            ConsoleOutput.ReadOnly = true;
             ConsoleOutput.Size = new Size(405, 589);
             ConsoleOutput.TabIndex = 3;
             ConsoleOutput.Text = "";
@@ -536,6 +537,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(ConsoleOutput);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             Text = "RCT-Master";
