@@ -54,19 +54,21 @@
             label7 = new Label();
             button4 = new Button();
             flowLayoutPanel1 = new FlowLayoutPanel();
-            button12 = new Button();
-            button5 = new Button();
-            button6 = new Button();
-            button7 = new Button();
-            button8 = new Button();
-            button9 = new Button();
-            button10 = new Button();
-            button11 = new Button();
-            button13 = new Button();
-            button14 = new Button();
-            button15 = new Button();
-            button16 = new Button();
+            eventButton1 = new Button();
+            eventButton2 = new Button();
+            eventButton3 = new Button();
+            eventButton4 = new Button();
+            eventButton5 = new Button();
+            eventButton6 = new Button();
+            eventButton7 = new Button();
+            eventButton8 = new Button();
+            eventButton9 = new Button();
+            eventButton10 = new Button();
+            eventButton11 = new Button();
+            eventButton12 = new Button();
             linkLabel1 = new LinkLabel();
+            eventButton13 = new Button();
+            eventButton14 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -218,7 +220,7 @@
             ConsoleOutput.ForeColor = SystemColors.Window;
             ConsoleOutput.Location = new Point(667, 13);
             ConsoleOutput.Name = "ConsoleOutput";
-            ConsoleOutput.Size = new Size(405, 565);
+            ConsoleOutput.Size = new Size(405, 589);
             ConsoleOutput.TabIndex = 3;
             ConsoleOutput.Text = "";
             // 
@@ -322,130 +324,132 @@
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.BorderStyle = BorderStyle.FixedSingle;
-            flowLayoutPanel1.Controls.Add(button12);
-            flowLayoutPanel1.Controls.Add(button5);
-            flowLayoutPanel1.Controls.Add(button6);
-            flowLayoutPanel1.Controls.Add(button7);
-            flowLayoutPanel1.Controls.Add(button8);
-            flowLayoutPanel1.Controls.Add(button9);
-            flowLayoutPanel1.Controls.Add(button10);
-            flowLayoutPanel1.Controls.Add(button11);
-            flowLayoutPanel1.Controls.Add(button13);
-            flowLayoutPanel1.Controls.Add(button14);
-            flowLayoutPanel1.Controls.Add(button15);
-            flowLayoutPanel1.Controls.Add(button16);
+            flowLayoutPanel1.Controls.Add(eventButton1);
+            flowLayoutPanel1.Controls.Add(eventButton2);
+            flowLayoutPanel1.Controls.Add(eventButton3);
+            flowLayoutPanel1.Controls.Add(eventButton4);
+            flowLayoutPanel1.Controls.Add(eventButton5);
+            flowLayoutPanel1.Controls.Add(eventButton6);
+            flowLayoutPanel1.Controls.Add(eventButton7);
+            flowLayoutPanel1.Controls.Add(eventButton8);
+            flowLayoutPanel1.Controls.Add(eventButton9);
+            flowLayoutPanel1.Controls.Add(eventButton10);
+            flowLayoutPanel1.Controls.Add(eventButton11);
+            flowLayoutPanel1.Controls.Add(eventButton12);
+            flowLayoutPanel1.Controls.Add(eventButton13);
+            flowLayoutPanel1.Controls.Add(eventButton14);
             flowLayoutPanel1.Location = new Point(218, 134);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(431, 444);
+            flowLayoutPanel1.Size = new Size(431, 465);
             flowLayoutPanel1.TabIndex = 14;
             // 
-            // button12
+            // eventButton1
             // 
-            button12.Location = new Point(3, 3);
-            button12.Name = "button12";
-            button12.Size = new Size(208, 68);
-            button12.TabIndex = 7;
-            button12.Text = "button12";
-            button12.UseVisualStyleBackColor = true;
+            eventButton1.Location = new Point(3, 3);
+            eventButton1.Name = "eventButton1";
+            eventButton1.Size = new Size(208, 60);
+            eventButton1.TabIndex = 7;
+            eventButton1.Text = "1";
+            eventButton1.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // eventButton2
             // 
-            button5.Location = new Point(217, 3);
-            button5.Name = "button5";
-            button5.Size = new Size(208, 68);
-            button5.TabIndex = 8;
-            button5.Text = "button5";
-            button5.UseVisualStyleBackColor = true;
+            eventButton2.Location = new Point(217, 3);
+            eventButton2.Name = "eventButton2";
+            eventButton2.Size = new Size(208, 60);
+            eventButton2.TabIndex = 8;
+            eventButton2.Text = "2";
+            eventButton2.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // eventButton3
             // 
-            button6.Location = new Point(3, 77);
-            button6.Name = "button6";
-            button6.Size = new Size(208, 68);
-            button6.TabIndex = 9;
-            button6.Text = "button6";
-            button6.UseVisualStyleBackColor = true;
+            eventButton3.Location = new Point(3, 69);
+            eventButton3.Name = "eventButton3";
+            eventButton3.Size = new Size(208, 60);
+            eventButton3.TabIndex = 9;
+            eventButton3.Text = "3";
+            eventButton3.UseVisualStyleBackColor = true;
             // 
-            // button7
+            // eventButton4
             // 
-            button7.Location = new Point(217, 77);
-            button7.Name = "button7";
-            button7.Size = new Size(208, 68);
-            button7.TabIndex = 10;
-            button7.Text = "button7";
-            button7.UseVisualStyleBackColor = true;
+            eventButton4.Location = new Point(217, 69);
+            eventButton4.Name = "eventButton4";
+            eventButton4.Size = new Size(208, 60);
+            eventButton4.TabIndex = 10;
+            eventButton4.Text = "4";
+            eventButton4.UseVisualStyleBackColor = true;
             // 
-            // button8
+            // eventButton5
             // 
-            button8.Location = new Point(3, 151);
-            button8.Name = "button8";
-            button8.Size = new Size(208, 68);
-            button8.TabIndex = 11;
-            button8.Text = "button8";
-            button8.UseVisualStyleBackColor = true;
+            eventButton5.Location = new Point(3, 135);
+            eventButton5.Name = "eventButton5";
+            eventButton5.Size = new Size(208, 60);
+            eventButton5.TabIndex = 11;
+            eventButton5.Text = "5";
+            eventButton5.UseVisualStyleBackColor = true;
             // 
-            // button9
+            // eventButton6
             // 
-            button9.Location = new Point(217, 151);
-            button9.Name = "button9";
-            button9.Size = new Size(208, 68);
-            button9.TabIndex = 12;
-            button9.Text = "button9";
-            button9.UseVisualStyleBackColor = true;
+            eventButton6.Location = new Point(217, 135);
+            eventButton6.Name = "eventButton6";
+            eventButton6.Size = new Size(208, 60);
+            eventButton6.TabIndex = 12;
+            eventButton6.Text = "6";
+            eventButton6.UseVisualStyleBackColor = true;
             // 
-            // button10
+            // eventButton7
             // 
-            button10.Location = new Point(3, 225);
-            button10.Name = "button10";
-            button10.Size = new Size(208, 68);
-            button10.TabIndex = 13;
-            button10.Text = "button10";
-            button10.UseVisualStyleBackColor = true;
+            eventButton7.Location = new Point(3, 201);
+            eventButton7.Name = "eventButton7";
+            eventButton7.Size = new Size(208, 60);
+            eventButton7.TabIndex = 13;
+            eventButton7.Text = "7";
+            eventButton7.UseVisualStyleBackColor = true;
             // 
-            // button11
+            // eventButton8
             // 
-            button11.Location = new Point(217, 225);
-            button11.Name = "button11";
-            button11.Size = new Size(208, 68);
-            button11.TabIndex = 14;
-            button11.Text = "button11";
-            button11.UseVisualStyleBackColor = true;
+            eventButton8.Location = new Point(217, 201);
+            eventButton8.Name = "eventButton8";
+            eventButton8.Size = new Size(208, 60);
+            eventButton8.TabIndex = 14;
+            eventButton8.Text = "8";
+            eventButton8.UseVisualStyleBackColor = true;
             // 
-            // button13
+            // eventButton9
             // 
-            button13.Location = new Point(3, 299);
-            button13.Name = "button13";
-            button13.Size = new Size(208, 68);
-            button13.TabIndex = 15;
-            button13.Text = "button13";
-            button13.UseVisualStyleBackColor = true;
+            eventButton9.Location = new Point(3, 267);
+            eventButton9.Name = "eventButton9";
+            eventButton9.Size = new Size(208, 60);
+            eventButton9.TabIndex = 15;
+            eventButton9.Text = "9";
+            eventButton9.UseVisualStyleBackColor = true;
             // 
-            // button14
+            // eventButton10
             // 
-            button14.Location = new Point(217, 299);
-            button14.Name = "button14";
-            button14.Size = new Size(208, 68);
-            button14.TabIndex = 16;
-            button14.Text = "button14";
-            button14.UseVisualStyleBackColor = true;
+            eventButton10.Location = new Point(217, 267);
+            eventButton10.Name = "eventButton10";
+            eventButton10.Size = new Size(208, 60);
+            eventButton10.TabIndex = 16;
+            eventButton10.Text = "10";
+            eventButton10.UseVisualStyleBackColor = true;
             // 
-            // button15
+            // eventButton11
             // 
-            button15.Location = new Point(3, 373);
-            button15.Name = "button15";
-            button15.Size = new Size(208, 68);
-            button15.TabIndex = 17;
-            button15.Text = "button15";
-            button15.UseVisualStyleBackColor = true;
+            eventButton11.Location = new Point(3, 333);
+            eventButton11.Name = "eventButton11";
+            eventButton11.Size = new Size(208, 60);
+            eventButton11.TabIndex = 17;
+            eventButton11.Text = "11";
+            eventButton11.UseVisualStyleBackColor = true;
             // 
-            // button16
+            // eventButton12
             // 
-            button16.Location = new Point(217, 373);
-            button16.Name = "button16";
-            button16.Size = new Size(208, 68);
-            button16.TabIndex = 18;
-            button16.Text = "button16";
-            button16.UseVisualStyleBackColor = true;
+            eventButton12.Location = new Point(217, 333);
+            eventButton12.Name = "eventButton12";
+            eventButton12.Size = new Size(208, 60);
+            eventButton12.TabIndex = 18;
+            eventButton12.Text = "12";
+            eventButton12.UseVisualStyleBackColor = true;
             // 
             // linkLabel1
             // 
@@ -458,6 +462,24 @@
             linkLabel1.TabStop = true;
             linkLabel1.Text = "https://rehoga-interactive.com/";
             linkLabel1.Click += openWebsite;
+            // 
+            // eventButton13
+            // 
+            eventButton13.Location = new Point(3, 399);
+            eventButton13.Name = "eventButton13";
+            eventButton13.Size = new Size(208, 60);
+            eventButton13.TabIndex = 19;
+            eventButton13.Text = "13";
+            eventButton13.UseVisualStyleBackColor = true;
+            // 
+            // eventButton14
+            // 
+            eventButton14.Location = new Point(217, 399);
+            eventButton14.Name = "eventButton14";
+            eventButton14.Size = new Size(208, 60);
+            eventButton14.TabIndex = 20;
+            eventButton14.Text = "14";
+            eventButton14.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -510,20 +532,22 @@
         private Button button4;
         private Button button3;
         private FlowLayoutPanel flowLayoutPanel1;
-        private Button button12;
-        private Button button5;
-        private Button button6;
-        private Button button7;
-        private Button button8;
-        private Button button9;
-        private Button button10;
-        private Button button11;
-        private Button button13;
-        private Button button14;
-        private Button button15;
-        private Button button16;
+        private Button eventButton1;
+        private Button eventButton2;
+        private Button eventButton3;
+        private Button eventButton4;
+        private Button eventButton5;
+        private Button eventButton6;
+        private Button eventButton7;
+        private Button eventButton8;
+        private Button eventButton9;
+        private Button eventButton10;
+        private Button eventButton11;
+        private Button eventButton12;
         private Button button17;
         private Button button18;
         private LinkLabel linkLabel1;
+        private Button eventButton13;
+        private Button eventButton14;
     }
 }

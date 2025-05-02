@@ -3,6 +3,7 @@ using System.Security.Cryptography.Pkcs;
 using System.Text;
 using System.Xml.Serialization;
 using System.Security.Cryptography;
+using System.Windows.Forms;
 
 namespace RCT_Master
 {
@@ -84,6 +85,7 @@ namespace RCT_Master
                         token = config.Token;
                         form.Text = ("RCT-Master: " + hostName);
                         form.LogToFile("[LOG READ CONTENT] " + serverIp + ":" + serverPort + ":" + token + ":" + hostName + "[LOG READ CONTENT]");
+                        form.LoadButtonConfigs(config);
                         return config;
                     }
                 }
@@ -116,6 +118,10 @@ namespace RCT_Master
                     serverIp = config.SlaveIP;
                     serverPort = config.SlavePort;
                     token = config.Token;
+
+                    // Die Buttons auslesen und in die Config setzen
+
+
                     form.LogToFile("[CFG WRITE CONTENT] " + serverIp + ":" + serverPort + ":" + token + ":" + hostName + "[CFG WRITE CONTENT]");
                 }
                 form.AppendSuccess("config.xml saved!");

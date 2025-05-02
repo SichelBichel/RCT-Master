@@ -49,7 +49,50 @@ namespace RCT_Master
                 HostName = richTextHostname.Text,
                 SlaveIP = richTextSlaveIP.Text,
                 SlavePort = int.Parse(richTextSlavePort.Text),
-                Token = richTextToken.Text
+                Token = richTextToken.Text,
+
+        EventButton1Name = eventButton1.Text,
+        EventButton1Content = eventButton1.Tag != null ? eventButton1.Tag.ToString() : "empty",
+
+        EventButton2Name = eventButton2.Text,
+        EventButton2Content = eventButton2.Tag != null ? eventButton2.Tag.ToString() : "empty",
+
+        EventButton3Name = eventButton3.Text,
+        EventButton3Content = eventButton3.Tag != null ? eventButton3.Tag.ToString() : "empty",
+
+        EventButton4Name = eventButton4.Text,
+        EventButton4Content = eventButton4.Tag != null ? eventButton4.Tag.ToString() : "empty",
+
+        EventButton5Name = eventButton5.Text,
+        EventButton5Content = eventButton5.Tag != null ? eventButton5.Tag.ToString() : "empty",
+
+        EventButton6Name = eventButton6.Text,
+        EventButton6Content = eventButton6.Tag != null ? eventButton6.Tag.ToString() : "empty",
+
+        EventButton7Name = eventButton7.Text,
+        EventButton7Content = eventButton7.Tag != null ? eventButton7.Tag.ToString() : "empty",
+
+        EventButton8Name = eventButton8.Text,
+        EventButton8Content = eventButton8.Tag != null ? eventButton8.Tag.ToString() : "empty",
+
+        EventButton9Name = eventButton9.Text,
+        EventButton9Content = eventButton9.Tag != null ? eventButton9.Tag.ToString() : "empty",
+
+        EventButton10Name = eventButton10.Text,
+        EventButton10Content = eventButton10.Tag != null ? eventButton10.Tag.ToString() : "empty",
+
+        EventButton11Name = eventButton11.Text,
+        EventButton11Content = eventButton11.Tag != null ? eventButton11.Tag.ToString() : "empty",
+
+        EventButton12Name = eventButton12.Text,
+        EventButton12Content = eventButton12.Tag != null ? eventButton12.Tag.ToString() : "empty",
+
+        EventButton13Name = eventButton13.Text,
+        EventButton13Content = eventButton13.Tag != null ? eventButton13.Tag.ToString() : "empty",
+
+        EventButton14Name = eventButton14.Text,
+        EventButton14Content = eventButton14.Tag != null ? eventButton14.Tag.ToString() : "empty"
+
             };
             Program.SaveConfigFile(config, "config.xml");
         }
@@ -209,7 +252,31 @@ namespace RCT_Master
 
 
 
+        //##############################
+        //         ButtonInit
+        //##############################
 
+        public void LoadButtonConfigs(Config config)
+        {
+            // Buttons mit den Namen und Inhalten aus der Konfiguration befüllen
+            eventButton1.Text = config.EventButton1Name;
+            eventButton1.Tag = config.EventButton1Content;
+
+            eventButton2.Text = config.EventButton2Name;
+            eventButton2.Tag = config.EventButton2Content;
+
+            eventButton3.Text = config.EventButton3Name;
+            eventButton3.Tag = config.EventButton3Content;
+
+            eventButton4.Text = config.EventButton4Name;
+            eventButton4.Tag = config.EventButton4Content;
+
+            eventButton5.Text = config.EventButton5Name;
+            eventButton5.Tag = config.EventButton5Content;
+            
+
+            // ... und so weiter für alle anderen Buttons
+        }
 
 
 
