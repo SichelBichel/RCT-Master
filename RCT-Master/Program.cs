@@ -204,26 +204,31 @@ namespace RCT_Master
                         if (parts.Length == 3)
                         {
                             string hash = parts[0];
-                            string token = parts[1];
+                            string incomingToken = parts[1];
                             string content = parts[2];
 
-                            parsedMessage = $"Hash: {hash}, Token: {token}, Content: {content}";
-                            responseMessage = CryptoCore.Encrypt($"ACK-{content}");
-                        }
-                        else
-                        {
-                            parsedMessage = $"Invalid Format: {decryptedMessage}";
-                            responseMessage = CryptoCore.Encrypt("ERR-InvalidFormat");
-                        }
+                            if (incomingToken == Program.token)
+                            {
+                                parsedMessage = content;
+                                responseMessage = CryptoCore.Encrypt($"ACK-{content}");
 
-                        byte[] responseData = Encoding.UTF8.GetBytes(responseMessage);
-                        await stream.WriteAsync(responseData, 0, responseData.Length, cancellationToken);
+                                form.Invoke(new Action(() =>
+                                {
+                                    form.AppendReadbackText("[READBACK]: ");
+                                    form.AppendInfoText(parsedMessage);
+                                }));
+                            }
+                            else
+                            {
+                                parsedMessage = $"Invalid token received";
+                                responseMessage = CryptoCore.Encrypt("ERR-InvalidToken");
 
-                        form.Invoke(new Action(() =>
-                        {
-                            form.AppendReadbackText("[READBACK]: ");
-                            form.AppendInfoText(parsedMessage);
-                        }));
+                                form.Invoke(new Action(() =>
+                                {
+                                    form.AppendWarning(parsedMessage);
+                                }));
+                            }
+                        }
                     }
                 }
             }
@@ -252,13 +257,13 @@ namespace RCT_Master
             try
             {
                 listenerCancelToken?.Cancel();
-                await Task.Delay(500); // Give time for listener to stop
+                await Task.Delay(500);
 
                 await InitReadback();
 
                 form.Invoke(new Action(() =>
                 {
-                    form.AppendSuccess("Listener restarted successfully.");
+                    //form.AppendSuccess("Listener restarted successfully.");
                 }));
             }
             catch (Exception ex)
