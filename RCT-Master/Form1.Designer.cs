@@ -48,6 +48,8 @@
             pictureBox2 = new PictureBox();
             label6 = new Label();
             panel2 = new Panel();
+            button17 = new Button();
+            button18 = new Button();
             button3 = new Button();
             label7 = new Label();
             button4 = new Button();
@@ -64,6 +66,7 @@
             button14 = new Button();
             button15 = new Button();
             button16 = new Button();
+            linkLabel1 = new LinkLabel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -215,7 +218,7 @@
             ConsoleOutput.ForeColor = SystemColors.Window;
             ConsoleOutput.Location = new Point(667, 13);
             ConsoleOutput.Name = "ConsoleOutput";
-            ConsoleOutput.Size = new Size(357, 565);
+            ConsoleOutput.Size = new Size(405, 565);
             ConsoleOutput.TabIndex = 3;
             ConsoleOutput.Text = "";
             // 
@@ -224,7 +227,7 @@
             pictureBox1.Image = Properties.Resources.ReHoGaBanner3_0_Transparent;
             pictureBox1.Location = new Point(3, 6);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(247, 105);
+            pictureBox1.Size = new Size(247, 102);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 5;
             pictureBox1.TabStop = false;
@@ -235,7 +238,7 @@
             pictureBox2.Image = Properties.Resources.BannerRCT1;
             pictureBox2.Location = new Point(256, 12);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(120, 92);
+            pictureBox2.Size = new Size(120, 116);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 11;
             pictureBox2.TabStop = false;
@@ -243,7 +246,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(12, 114);
+            label6.Location = new Point(12, 113);
             label6.Name = "label6";
             label6.Size = new Size(75, 15);
             label6.TabIndex = 12;
@@ -252,29 +255,53 @@
             // panel2
             // 
             panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(button17);
+            panel2.Controls.Add(button18);
             panel2.Controls.Add(button3);
             panel2.Controls.Add(label7);
             panel2.Controls.Add(button4);
             panel2.Location = new Point(382, 12);
             panel2.Name = "panel2";
-            panel2.Size = new Size(267, 99);
+            panel2.Size = new Size(267, 116);
             panel2.TabIndex = 13;
+            // 
+            // button17
+            // 
+            button17.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button17.Location = new Point(134, 27);
+            button17.Name = "button17";
+            button17.Size = new Size(128, 39);
+            button17.TabIndex = 7;
+            button17.Text = "Clear Console";
+            button17.UseVisualStyleBackColor = true;
+            button17.Click += buttonClearConsole;
+            // 
+            // button18
+            // 
+            button18.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button18.Location = new Point(3, 27);
+            button18.Name = "button18";
+            button18.Size = new Size(128, 39);
+            button18.TabIndex = 6;
+            button18.Text = "Open Log";
+            button18.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
             button3.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.Location = new Point(134, 52);
+            button3.Location = new Point(134, 72);
             button3.Name = "button3";
             button3.Size = new Size(128, 39);
             button3.TabIndex = 5;
             button3.Text = "Test Connection";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += testConnection;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Impact", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.Location = new Point(95, 13);
+            label7.Location = new Point(95, 0);
             label7.Name = "label7";
             label7.Size = new Size(75, 25);
             label7.TabIndex = 4;
@@ -283,7 +310,7 @@
             // button4
             // 
             button4.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button4.Location = new Point(3, 52);
+            button4.Location = new Point(3, 72);
             button4.Name = "button4";
             button4.Size = new Size(128, 39);
             button4.TabIndex = 1;
@@ -418,11 +445,24 @@
             button16.Text = "button16";
             button16.UseVisualStyleBackColor = true;
             // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            linkLabel1.Location = new Point(12, 585);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(189, 17);
+            linkLabel1.TabIndex = 15;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "https://rehoga-interactive.com/";
+            linkLabel1.Click += openWebsite;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1036, 592);
+            ClientSize = new Size(1084, 611);
+            Controls.Add(linkLabel1);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(panel2);
             Controls.Add(label6);
@@ -480,5 +520,8 @@
         private Button button14;
         private Button button15;
         private Button button16;
+        private Button button17;
+        private Button button18;
+        private LinkLabel linkLabel1;
     }
 }

@@ -13,54 +13,47 @@ namespace RCT_Master
         /// 
         public static Form1 form;
 
+        public static string hostName = "EnterTargetHostname";
+        public static string serverIp = "127.0.0.1";
+        public static int serverPort = 65535;
+        public static string token = "12345";
+        public static string hashKey = "c71ee8230724cc1eef15740fba8506a2";
+
+
+
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             form = new Form1();
             Application.Run(form);
-            
+           
 
-
-
-
-            // Slave Data
-            string hostName = "Testserver";
-            string serverIp = "127.0.0.1";
-            int serverPort = 5000;
-
-            string token = "1234";
-            string app = "NotePad";
-            string hashKey = "c71ee8230724cc1eef15740fba8506a2";
-            form.Text = ("RCT Master:" + hostName);
-            Thread.Sleep(1000);
-            LoadConfig("config.xml");
-            //SendMessage(serverIp, serverPort, token, app);
+            //SendMessage(serverIp, serverPort, token, app, hashKey);
         }
 
 
 
-        public static void SendMessage(string serverIp, int serverPort, string token, string app, string hashKey)
+        //MSG Send
+        public static void SendMessage(string content)
         {
             try
             {
                 using (TcpClient client = new TcpClient(serverIp, serverPort))
                 {
                     NetworkStream stream = client.GetStream();
-                    string message = $"{hashKey}-{token}-{app}";
+                    string message = $"{hashKey}-{token}-{content}";
                     byte[] data = Encoding.UTF8.GetBytes(message);
 
                     // send
                     stream.Write(data, 0, data.Length);
-                    Console.WriteLine($"Msg Sent: {message}");
+                    form.AppendMessageText("Message Sent: ");
+                    form.AppendInfoText(content);
                 }
             }
             catch (Exception ex)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Error: {ex.Message}");
+                form.AppendError($"Error: {ex.Message}");
             }
         }
 
@@ -77,23 +70,29 @@ namespace RCT_Master
                     using (StreamReader reader = new StreamReader(filePath))
                     {
                         Config config = (Config)serializer.Deserialize(reader);
+                        form.AppendSuccess("CFG Loaded (Program.cs)");
+                        hostName = config.HostName;
+                        serverIp = config.SlaveIP;
+                        serverPort = config.SlavePort;
+                        token = config.Token;
+                        form.Text = ("RTC Master: " + hostName);
                         return config;
                     }
                 }
                 else
                 {
-                    form.AppendSuccess("CFG loaded");
+                    form.AppendWarning("config.xml not existing");
                     return null;
                 }
             }
             catch (Exception ex)
             {
-                form.AppendError("CFG read error: " + ex.Message);
+                form.AppendError("config.xml read error: " + ex.Message);
                 return null;
             }
         }
 
-
+        //CFG Writer
         public static void SaveConfigFile(Config config, string fileName)
         {
             try
@@ -105,6 +104,10 @@ namespace RCT_Master
                 using (StreamWriter writer = new StreamWriter(filePath))
                 {
                     serializer.Serialize(writer, config);
+                    hostName = config.HostName;
+                    serverIp = config.SlaveIP;
+                    serverPort = config.SlavePort;
+                    token = config.Token;
                 }
                 form.AppendSuccess("CFG saved");
             }
@@ -113,6 +116,8 @@ namespace RCT_Master
                 form.AppendError("CFG save error: " + ex.Message);
             }
         }
+
+
 
 
 
