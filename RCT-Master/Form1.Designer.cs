@@ -71,6 +71,7 @@
             eventButton13 = new Button();
             eventButton14 = new Button();
             linkLabel1 = new LinkLabel();
+            button6 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -524,11 +525,23 @@
             linkLabel1.Text = "https://rehoga-interactive.com/";
             linkLabel1.Click += openWebsite;
             // 
+            // button6
+            // 
+            button6.Font = new Font("Arial Narrow", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button6.Location = new Point(93, 109);
+            button6.Name = "button6";
+            button6.Size = new Size(106, 23);
+            button6.TabIndex = 16;
+            button6.Text = "Update RCT";
+            button6.UseVisualStyleBackColor = true;
+            button6.Click += inputUpdate;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1084, 611);
+            Controls.Add(button6);
             Controls.Add(linkLabel1);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(panel2);
@@ -595,5 +608,6 @@
         private Button eventButton14;
         private Button button5;
         private CheckBox WanCheckBox;
+        private Button button6;
     }
 }

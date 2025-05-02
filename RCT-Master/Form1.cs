@@ -405,11 +405,11 @@ namespace RCT_Master
             DialogResult result = MessageBox.Show(
                 "Are you sure you want to reset the configuration?",
                 "Reset Config",
-                MessageBoxButtons.YesNo, 
+                MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning,
                 MessageBoxDefaultButton.Button2);
 
-            if (result != DialogResult.Yes) 
+            if (result != DialogResult.Yes)
             {
                 AppendInfoText("Reset cancelled by user.");
                 return;
@@ -474,6 +474,12 @@ namespace RCT_Master
                 EventButton14Name = "none",
                 EventButton14Content = "empty"
             };
+        }
+
+        private void inputUpdate(object sender, EventArgs e)
+        {
+            AppendWarning("\nAutomatic Updates are not available yet.\n Please visit:\n https://rehoga-interactive.com/remote-control-terminal \n and crosscheck the version number\n");
+            AppendError("ALWAYS UPDATE SLAVES TOO!! DIFFERENT VERSIONS CAN CAUSE ISSUES");
         }
     }
 }
