@@ -18,9 +18,10 @@ namespace RCT_Master
         public static int readbackPort = 1;
         public static string token = "12345";
         public static string hashKey = "c71ee8230724cc1eef15740fba8506a2";
-        public static TcpListener readbackListener;
-        public static Thread listenerThread;
-        private static volatile bool listenerRunning = false;
+        private static TcpListener readbackListener;
+        private static Thread listenerThread;
+        private static bool listenerRunning = false;
+        private static CancellationTokenSource listenerCancelToken;
 
 
         [STAThread]
@@ -145,153 +146,142 @@ namespace RCT_Master
             }
         }
 
+
+
+
+
+
+
         //##############################
         //         Readback Listener
         //##############################
 
-
-        public static void InitReadback()
+        public static async Task InitReadback()
         {
             if (listenerRunning) return;
 
-            listenerThread = new Thread(() =>
-            {
-                ReadbackListener(serverIp, readbackPort);
-            });
-            listenerThread.IsBackground = true;
-            listenerThread.Start();
+            listenerRunning = true;
+            listenerCancelToken = new CancellationTokenSource();
+
+            await Task.Run(() => ReadbackListener(serverIp, readbackPort, listenerCancelToken.Token));
         }
-        public static void ReadbackListener(string ipAddress, int port)
+
+        public static async Task ReadbackListener(string ipAddress, int port, CancellationToken cancellationToken)
         {
             try
             {
-                readbackListener = new TcpListener(IPAddress.Parse(ipAddress), port);
+                readbackListener = new TcpListener(IPAddress.Any, port);
                 readbackListener.Start();
-                listenerRunning = true;
 
-                if (form.InvokeRequired)
+                form.Invoke(new Action(() =>
                 {
-                    form.Invoke(new Action(() =>
+                    form.AppendSuccess($"Listener online at {ipAddress}:{port}");
+                }));
+
+                while (!cancellationToken.IsCancellationRequested)
+                {
+                    if (!readbackListener.Pending())
                     {
-                        form.AppendMessageText($"Listener online at {ipAddress}:{port}");
-                    }));
-                }
-                else
-                {
-                    form.AppendMessageText($"Listener online at {ipAddress}:{port}");
-                }
-
-                while (listenerRunning)
-                {
-                    try
-                    {
-                        using (TcpClient client = readbackListener.AcceptTcpClient())
-                        using (NetworkStream stream = client.GetStream())
-                        {
-                            byte[] buffer = new byte[1024];
-                            int bytesRead = stream.Read(buffer, 0, buffer.Length);
-                            if (bytesRead == 0) continue;
-
-                            string encryptedMessage = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                            string decryptedMessage = CryptoCore.Decrypt(encryptedMessage);
-
-                            // parsing
-                            string parsedMessage;
-                            string responseMessage;
-
-                            string[] parts = decryptedMessage.Split('-');
-                            if (parts.Length == 3)
-                            {
-                                string hash = parts[0];
-                                string token = parts[1];
-                                string content = parts[2];
-
-                                parsedMessage = $"Hash: {hash}, Token: {token}, Content: {content}";
-                                responseMessage = CryptoCore.Encrypt($"ACK-{content}");
-                            }
-                            else
-                            {
-                                parsedMessage = $"Invalid Format: {decryptedMessage}";
-                                responseMessage = CryptoCore.Encrypt("ERR-InvalidFormat");
-                            }
-
-
-                            if (form.InvokeRequired)
-                            {
-                                form.Invoke(new Action(() =>
-                                {
-                                    form.AppendReadbackText($"[READBACK]: ");
-                                    form.AppendInfoText(parsedMessage);
-                                }));
-                            }
-                            else
-                            {
-                                form.AppendReadbackText($"[READBACK]: ");
-                                form.AppendInfoText(parsedMessage);
-                            }
-                        }
+                        await Task.Delay(100, cancellationToken);
+                        continue;
                     }
-                    catch (Exception innerEx)
+
+                    using (TcpClient client = await readbackListener.AcceptTcpClientAsync())
+                    using (NetworkStream stream = client.GetStream())
                     {
-                        if (form.InvokeRequired)
+                        byte[] buffer = new byte[1024];
+                        int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length, cancellationToken);
+
+                        if (bytesRead == 0) continue;
+
+                        string encryptedMessage = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                        string decryptedMessage = CryptoCore.Decrypt(encryptedMessage);
+
+                        string[] parts = decryptedMessage.Split('-');
+                        string parsedMessage;
+                        string responseMessage;
+
+                        if (parts.Length == 3)
                         {
-                            form.Invoke(new Action(() =>
-                            {
-                                form.AppendError($"Error while processing connection: {innerEx.Message}");
-                            }));
+                            string hash = parts[0];
+                            string token = parts[1];
+                            string content = parts[2];
+
+                            parsedMessage = $"Hash: {hash}, Token: {token}, Content: {content}";
+                            responseMessage = CryptoCore.Encrypt($"ACK-{content}");
                         }
                         else
                         {
-                            form.AppendError($"Error while establishing connection: {innerEx.Message}");
+                            parsedMessage = $"Invalid Format: {decryptedMessage}";
+                            responseMessage = CryptoCore.Encrypt("ERR-InvalidFormat");
                         }
+
+                        byte[] responseData = Encoding.UTF8.GetBytes(responseMessage);
+                        await stream.WriteAsync(responseData, 0, responseData.Length, cancellationToken);
+
+                        form.Invoke(new Action(() =>
+                        {
+                            form.AppendReadbackText("[READBACK]: ");
+                            form.AppendInfoText(parsedMessage);
+                        }));
                     }
                 }
             }
+            catch (OperationCanceledException)
+            {
+                LogInfo("Listener canceled.");
+            }
             catch (Exception ex)
             {
-                if (form.InvokeRequired)
-                {
-                    form.Invoke(new Action(() =>
-                    {
-                        form.AppendError($"Error at Listener: {ex.Message}");
-                    }));
-                }
-                else
-                {
-                    form.AppendError($"Error at Listener: {ex.Message}");
-                }
+                LogError($"Listener error: {ex.Message}");
+            }
+            finally
+            {
+                try { readbackListener?.Stop(); } catch { }
+
+                listenerRunning = false;
+                readbackListener = null;
+
+                LogInfo("Listener stopped.");
             }
         }
 
-        public static void RestartReadback()
+
+        public static async Task RestartReadback()
         {
             try
             {
-                listenerRunning = false;
+                listenerCancelToken?.Cancel();
+                await Task.Delay(500); // Give time for listener to stop
 
-                if (readbackListener != null)
+                await InitReadback();
+
+                form.Invoke(new Action(() =>
                 {
-                    readbackListener.Stop();
-                    readbackListener = null;
-                }
-
-                if (listenerThread != null && listenerThread.IsAlive)
-                {
-                    listenerThread.Join(500);
-                    listenerThread = null;
-                }
-
-                Thread.Sleep(200);
-                InitReadback();
+                    form.AppendSuccess("Listener restarted successfully.");
+                }));
             }
             catch (Exception ex)
             {
                 form.Invoke(new Action(() =>
                 {
-                    form.AppendError($"Error while restarting listener: {ex.Message}");
+                    form.AppendError($"Error restarting listener: {ex.Message}");
                 }));
             }
         }
 
+        private static void LogError(string message)
+        {
+            form.Invoke(new Action(() => form.AppendError(message)));
+        }
+
+        private static void LogInfo(string message)
+        {
+            form.Invoke(new Action(() => form.AppendInfoText(message)));
+        }
+
+
     }
 }
+
+
