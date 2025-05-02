@@ -14,10 +14,11 @@ namespace RCT_Master
 
         public static string hostName = "EnterTargetHostname";
         public static string serverIp = "127.0.0.1";
-        public static int serverPort = 65535;
+        public static int serverPort = 65534;
         public static int readbackPort = 1;
         public static string token = "12345";
         public static string hashKey = "c71ee8230724cc1eef15740fba8506a2";
+        public static bool WanMode = false;
         private static TcpListener readbackListener;
         private static Thread listenerThread;
         private static bool listenerRunning = false;
@@ -91,16 +92,16 @@ namespace RCT_Master
                     using (StreamReader reader = new StreamReader(filePath))
                     {
                         Config config = (Config)serializer.Deserialize(reader);
-                        form.AppendSuccess("config.xml loaded and applied!");
                         hostName = config.HostName;
                         serverIp = config.SlaveIP;
-                        if (silentMode == true)
+                        if (silentMode == false)
                         {
-                            form.AppendWarning("STEALTH");
+                            form.AppendSuccess("config.xml loaded and applied!");
                         }
                         serverPort = config.SlavePort;
                         token = config.Token;
                         readbackPort = config.SlavePort + 1;
+                        WanMode = config.WanMode;
                         form.Text = ("RCT-Master: " + hostName);
                         form.LogToFile("[LOG READ CONTENT] " + serverIp + ":" + serverPort + ":" + token + ":" + hostName + "[LOG READ CONTENT]");
                         form.LoadButtonConfigs(config);
@@ -122,7 +123,7 @@ namespace RCT_Master
         }
 
         //CFG Writer
-        public static void SaveConfigFile(Config config, string fileName)
+        public static async void SaveConfigFile(Config config, string fileName)
         {
             try
             {
@@ -137,13 +138,12 @@ namespace RCT_Master
                     serverIp = config.SlaveIP;
                     serverPort = config.SlavePort;
                     token = config.Token;
-                    LoadConfig("config.xml", true);
-                    // Die Buttons auslesen und in die Config setzen
-
-
+                    WanMode = config.WanMode;
                     form.LogToFile("[CFG WRITE CONTENT] " + serverIp + ":" + serverPort + ":" + token + ":" + hostName + "[CFG WRITE CONTENT]");
                 }
                 form.AppendSuccess("config.xml saved!");
+                await Task.Delay(200);
+                LoadConfig("config.xml", true);
             }
             catch (Exception ex)
             {
@@ -225,13 +225,19 @@ namespace RCT_Master
                             }
                             else
                             {
-                                parsedMessage = $"Invalid token received";
-                                responseMessage = CryptoCore.Encrypt("ERR-InvalidToken");
 
-                                form.Invoke(new Action(() =>
+                                    parsedMessage = $"Invalid token received";
+                                    responseMessage = CryptoCore.Encrypt("ERR-InvalidToken");
+
+
+                                if (WanMode == false)
                                 {
-                                    form.AppendWarning(parsedMessage);
-                                }));
+                                    form.Invoke(new Action(() =>
+                                    {
+                                        form.AppendWarning(parsedMessage);
+                                    }));
+                                }
+
                             }
                         }
                     }
@@ -239,7 +245,7 @@ namespace RCT_Master
             }
             catch (OperationCanceledException)
             {
-                LogInfo("Listener canceled.");
+                //LogInfo("Listener canceled.");
             }
             catch (Exception ex)
             {

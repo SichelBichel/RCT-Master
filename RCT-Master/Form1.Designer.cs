@@ -34,6 +34,8 @@
             richTextSlaveIP = new RichTextBox();
             richTextSlavePort = new RichTextBox();
             panel1 = new Panel();
+            button5 = new Button();
+            WanCheckBox = new CheckBox();
             label5 = new Label();
             button2 = new Button();
             button1 = new Button();
@@ -81,7 +83,7 @@
             richTextSlaveIP.BackColor = SystemColors.InfoText;
             richTextSlaveIP.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             richTextSlaveIP.ForeColor = Color.White;
-            richTextSlaveIP.Location = new Point(27, 204);
+            richTextSlaveIP.Location = new Point(27, 170);
             richTextSlaveIP.Name = "richTextSlaveIP";
             richTextSlaveIP.Size = new Size(130, 31);
             richTextSlaveIP.TabIndex = 0;
@@ -92,7 +94,7 @@
             richTextSlavePort.BackColor = SystemColors.InfoText;
             richTextSlavePort.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             richTextSlavePort.ForeColor = Color.White;
-            richTextSlavePort.Location = new Point(27, 272);
+            richTextSlavePort.Location = new Point(27, 222);
             richTextSlavePort.Name = "richTextSlavePort";
             richTextSlavePort.Size = new Size(130, 31);
             richTextSlavePort.TabIndex = 1;
@@ -102,6 +104,8 @@
             // panel1
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(button5);
+            panel1.Controls.Add(WanCheckBox);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(button2);
             panel1.Controls.Add(button1);
@@ -118,6 +122,30 @@
             panel1.Size = new Size(187, 444);
             panel1.TabIndex = 2;
             // 
+            // button5
+            // 
+            button5.BackColor = Color.White;
+            button5.Font = new Font("Arial", 12F, FontStyle.Bold);
+            button5.ForeColor = Color.Black;
+            button5.Location = new Point(27, 388);
+            button5.Name = "button5";
+            button5.Size = new Size(130, 40);
+            button5.TabIndex = 11;
+            button5.Text = "RESET";
+            button5.UseVisualStyleBackColor = false;
+            button5.Click += delCFG;
+            // 
+            // WanCheckBox
+            // 
+            WanCheckBox.AutoSize = true;
+            WanCheckBox.Location = new Point(45, 267);
+            WanCheckBox.Name = "WanCheckBox";
+            WanCheckBox.Size = new Size(88, 19);
+            WanCheckBox.TabIndex = 10;
+            WanCheckBox.Text = "WAN Mode";
+            WanCheckBox.UseVisualStyleBackColor = true;
+            WanCheckBox.Click += inputWanChanged;
+            // 
             // label5
             // 
             label5.AutoSize = true;
@@ -133,9 +161,9 @@
             button2.BackColor = Color.White;
             button2.Font = new Font("Arial", 12F, FontStyle.Bold);
             button2.ForeColor = Color.Black;
-            button2.Location = new Point(27, 371);
+            button2.Location = new Point(27, 342);
             button2.Name = "button2";
-            button2.Size = new Size(130, 47);
+            button2.Size = new Size(130, 40);
             button2.TabIndex = 9;
             button2.Text = "RELOAD";
             button2.UseVisualStyleBackColor = false;
@@ -146,9 +174,9 @@
             button1.BackColor = Color.White;
             button1.Font = new Font("Arial", 12F, FontStyle.Bold);
             button1.ForeColor = Color.Black;
-            button1.Location = new Point(27, 318);
+            button1.Location = new Point(27, 298);
             button1.Name = "button1";
-            button1.Size = new Size(130, 47);
+            button1.Size = new Size(130, 40);
             button1.TabIndex = 8;
             button1.Text = "APPLY";
             button1.UseVisualStyleBackColor = false;
@@ -157,7 +185,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(27, 49);
+            label4.Location = new Point(27, 48);
             label4.Name = "label4";
             label4.Size = new Size(65, 15);
             label4.TabIndex = 7;
@@ -168,7 +196,7 @@
             richTextHostname.BackColor = SystemColors.InfoText;
             richTextHostname.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             richTextHostname.ForeColor = Color.White;
-            richTextHostname.Location = new Point(27, 67);
+            richTextHostname.Location = new Point(27, 66);
             richTextHostname.Name = "richTextHostname";
             richTextHostname.Size = new Size(130, 31);
             richTextHostname.TabIndex = 6;
@@ -178,7 +206,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(27, 117);
+            label3.Location = new Point(27, 100);
             label3.Name = "label3";
             label3.Size = new Size(41, 15);
             label3.TabIndex = 5;
@@ -189,7 +217,7 @@
             richTextToken.BackColor = SystemColors.InfoText;
             richTextToken.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             richTextToken.ForeColor = Color.White;
-            richTextToken.Location = new Point(27, 135);
+            richTextToken.Location = new Point(27, 118);
             richTextToken.Name = "richTextToken";
             richTextToken.Size = new Size(130, 31);
             richTextToken.TabIndex = 4;
@@ -199,7 +227,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(27, 186);
+            label2.Location = new Point(27, 152);
             label2.Name = "label2";
             label2.Size = new Size(32, 15);
             label2.TabIndex = 3;
@@ -208,7 +236,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(27, 254);
+            label1.Location = new Point(27, 204);
             label1.Name = "label1";
             label1.Size = new Size(32, 15);
             label1.TabIndex = 2;
@@ -349,7 +377,7 @@
             eventButton1.Name = "eventButton1";
             eventButton1.Size = new Size(208, 60);
             eventButton1.TabIndex = 7;
-            eventButton1.Text = "1";
+            eventButton1.Text = "none";
             eventButton1.UseVisualStyleBackColor = true;
             eventButton1.Click += buttonAction1;
             // 
@@ -359,7 +387,7 @@
             eventButton2.Name = "eventButton2";
             eventButton2.Size = new Size(208, 60);
             eventButton2.TabIndex = 8;
-            eventButton2.Text = "2";
+            eventButton2.Text = "none";
             eventButton2.UseVisualStyleBackColor = true;
             eventButton2.Click += buttonAction2;
             // 
@@ -369,7 +397,7 @@
             eventButton3.Name = "eventButton3";
             eventButton3.Size = new Size(208, 60);
             eventButton3.TabIndex = 9;
-            eventButton3.Text = "3";
+            eventButton3.Text = "none";
             eventButton3.UseVisualStyleBackColor = true;
             eventButton3.Click += buttonAction3;
             // 
@@ -379,7 +407,7 @@
             eventButton4.Name = "eventButton4";
             eventButton4.Size = new Size(208, 60);
             eventButton4.TabIndex = 10;
-            eventButton4.Text = "4";
+            eventButton4.Text = "none";
             eventButton4.UseVisualStyleBackColor = true;
             eventButton4.Click += buttonAction4;
             // 
@@ -389,7 +417,7 @@
             eventButton5.Name = "eventButton5";
             eventButton5.Size = new Size(208, 60);
             eventButton5.TabIndex = 11;
-            eventButton5.Text = "5";
+            eventButton5.Text = "none";
             eventButton5.UseVisualStyleBackColor = true;
             eventButton5.Click += buttonAction5;
             // 
@@ -399,7 +427,7 @@
             eventButton6.Name = "eventButton6";
             eventButton6.Size = new Size(208, 60);
             eventButton6.TabIndex = 12;
-            eventButton6.Text = "6";
+            eventButton6.Text = "none";
             eventButton6.UseVisualStyleBackColor = true;
             eventButton6.Click += buttonAction6;
             // 
@@ -409,7 +437,7 @@
             eventButton7.Name = "eventButton7";
             eventButton7.Size = new Size(208, 60);
             eventButton7.TabIndex = 13;
-            eventButton7.Text = "7";
+            eventButton7.Text = "none";
             eventButton7.UseVisualStyleBackColor = true;
             eventButton7.Click += buttonAction7;
             // 
@@ -419,7 +447,7 @@
             eventButton8.Name = "eventButton8";
             eventButton8.Size = new Size(208, 60);
             eventButton8.TabIndex = 14;
-            eventButton8.Text = "8";
+            eventButton8.Text = "none";
             eventButton8.UseVisualStyleBackColor = true;
             eventButton8.Click += buttonAction8;
             // 
@@ -429,7 +457,7 @@
             eventButton9.Name = "eventButton9";
             eventButton9.Size = new Size(208, 60);
             eventButton9.TabIndex = 15;
-            eventButton9.Text = "9";
+            eventButton9.Text = "none";
             eventButton9.UseVisualStyleBackColor = true;
             eventButton9.Click += buttonAction9;
             // 
@@ -439,7 +467,7 @@
             eventButton10.Name = "eventButton10";
             eventButton10.Size = new Size(208, 60);
             eventButton10.TabIndex = 16;
-            eventButton10.Text = "10";
+            eventButton10.Text = "none";
             eventButton10.UseVisualStyleBackColor = true;
             eventButton10.Click += buttonAction10;
             // 
@@ -449,7 +477,7 @@
             eventButton11.Name = "eventButton11";
             eventButton11.Size = new Size(208, 60);
             eventButton11.TabIndex = 17;
-            eventButton11.Text = "11";
+            eventButton11.Text = "none";
             eventButton11.UseVisualStyleBackColor = true;
             eventButton11.Click += buttonAction11;
             // 
@@ -459,7 +487,7 @@
             eventButton12.Name = "eventButton12";
             eventButton12.Size = new Size(208, 60);
             eventButton12.TabIndex = 18;
-            eventButton12.Text = "12";
+            eventButton12.Text = "none";
             eventButton12.UseVisualStyleBackColor = true;
             eventButton12.Click += buttonAction12;
             // 
@@ -469,7 +497,7 @@
             eventButton13.Name = "eventButton13";
             eventButton13.Size = new Size(208, 60);
             eventButton13.TabIndex = 19;
-            eventButton13.Text = "13";
+            eventButton13.Text = "none";
             eventButton13.UseVisualStyleBackColor = true;
             eventButton13.Click += buttonAction13;
             // 
@@ -479,7 +507,7 @@
             eventButton14.Name = "eventButton14";
             eventButton14.Size = new Size(208, 60);
             eventButton14.TabIndex = 20;
-            eventButton14.Text = "14";
+            eventButton14.Text = "none";
             eventButton14.UseVisualStyleBackColor = true;
             eventButton14.Click += buttonAction14;
             // 
@@ -563,5 +591,7 @@
         private LinkLabel linkLabel1;
         private Button eventButton13;
         private Button eventButton14;
+        private Button button5;
+        private CheckBox WanCheckBox;
     }
 }

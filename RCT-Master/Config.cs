@@ -21,6 +21,9 @@ namespace RCT_Master
 
         [XmlElement("Token")]
         public string Token { get; set; }
+
+        [XmlElement("WANMode")]
+        public bool WanMode { get; set; }
         //
 
 

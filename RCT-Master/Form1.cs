@@ -51,6 +51,7 @@ namespace RCT_Master
                 SlaveIP = richTextSlaveIP.Text,
                 SlavePort = int.Parse(richTextSlavePort.Text),
                 Token = richTextToken.Text,
+                WanMode = WanCheckBox.Checked,
 
                 EventButton1Name = eventButton1.Text,
                 EventButton1Content = eventButton1.Tag != null ? eventButton1.Tag.ToString() : "empty",
@@ -109,6 +110,7 @@ namespace RCT_Master
                 richTextSlaveIP.Text = config.SlaveIP;
                 richTextSlavePort.Text = config.SlavePort.ToString();
                 richTextToken.Text = config.Token;
+                WanCheckBox.Checked = config.WanMode;
             }
             else
             {
@@ -229,7 +231,7 @@ namespace RCT_Master
             LogToFile($"[Info] " + infoText);
         }
 
- 
+
 
         //only for output message - single use
         public void AppendMessageText(string messageText)
@@ -390,6 +392,88 @@ namespace RCT_Master
         private void buttonAction14(object sender, EventArgs e)
         {
             Program.SendMessage(eventButton14.Tag.ToString());
+        }
+
+        private void inputWanChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("WAN Mode: \n\nOn: Invalid Responses are filtered \nOff: Invalid Responses are displayed ", "RCT", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+        }
+
+        private async void delCFG(object sender, EventArgs e)
+        {
+
+            DialogResult result = MessageBox.Show(
+                "Are you sure you want to reset the configuration?",
+                "Reset Config",
+                MessageBoxButtons.YesNo, 
+                MessageBoxIcon.Warning,
+                MessageBoxDefaultButton.Button2);
+
+            if (result != DialogResult.Yes) 
+            {
+                AppendInfoText("Reset cancelled by user.");
+                return;
+            }
+
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.xml");
+
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+                AppendInfoText("Config deleted.");
+            }
+            else
+            {
+                AppendWarning("config.xml does not exist.");
+            }
+
+            await Task.Delay(250);
+
+            Config defaultConfig = CreateDefaultConfig();
+            Program.SaveConfigFile(defaultConfig, "config.xml");
+            await Task.Delay(200);
+            reload_CFG(null, null);
+        }
+
+        private Config CreateDefaultConfig()
+        {
+            return new Config
+            {
+                HostName = "HostName",
+                SlaveIP = "127.0.0.1",
+                SlavePort = 65534,
+                Token = "12345",
+                WanMode = false,
+
+                EventButton1Name = "none",
+                EventButton1Content = "empty",
+                EventButton2Name = "none",
+                EventButton2Content = "empty",
+                EventButton3Name = "none",
+                EventButton3Content = "empty",
+                EventButton4Name = "none",
+                EventButton4Content = "empty",
+                EventButton5Name = "none",
+                EventButton5Content = "empty",
+                EventButton6Name = "none",
+                EventButton6Content = "empty",
+                EventButton7Name = "none",
+                EventButton7Content = "empty",
+                EventButton8Name = "none",
+                EventButton8Content = "empty",
+                EventButton9Name = "none",
+                EventButton9Content = "empty",
+                EventButton10Name = "none",
+                EventButton10Content = "empty",
+                EventButton11Name = "none",
+                EventButton11Content = "empty",
+                EventButton12Name = "none",
+                EventButton12Content = "empty",
+                EventButton13Name = "none",
+                EventButton13Content = "empty",
+                EventButton14Name = "none",
+                EventButton14Content = "empty"
+            };
         }
     }
 }
