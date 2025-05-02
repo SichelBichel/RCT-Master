@@ -9,6 +9,7 @@ namespace RCT_Master
     {
         public Form1()
         {
+            LogToFile("\n\n ---------- NEW SESSION ---------- \n\n");
             InitializeComponent();
             PostInit();
         }
@@ -93,6 +94,53 @@ namespace RCT_Master
             AppendWarning("Console cleared!");
         }
 
+        private void openLog(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = "log.txt",
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                AppendError(ex.ToString());
+            }
+        }
+
+        private void openCFG(object sender, EventArgs e)
+        {
+            try
+            {
+                if (File.Exists("config.xml"))
+                {
+                    try
+                    {
+                        Process.Start(new ProcessStartInfo
+                        {
+                            FileName = "config.xml",
+                            UseShellExecute = true
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        AppendError(ex.ToString());
+                    }
+                }
+                else
+                {
+                    reload_CFG(null, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                AppendError(ex.ToString());
+            }
+        }
+
+
         private void openWebsite(object sender, EventArgs e)
         {
             string url = "https://rehoga-interactive.com/";
@@ -116,21 +164,25 @@ namespace RCT_Master
         {
             ConsoleOutput.SelectionColor = System.Drawing.Color.Red;
             ConsoleOutput.AppendText(errorText + "\n");
+            LogToFile("[Error] " + errorText);
         }
         public void AppendWarning(string warningText)
         {
             ConsoleOutput.SelectionColor = System.Drawing.Color.Yellow;
             ConsoleOutput.AppendText(warningText + "\n");
+            LogToFile($"[Warning] " + warningText);
         }
         public void AppendSuccess(string successText)
         {
             ConsoleOutput.SelectionColor = System.Drawing.Color.LightGreen;
             ConsoleOutput.AppendText(successText + "\n");
+            LogToFile($"[Success] " + successText);
         }
         public void AppendInfoText(string infoText)
         {
             ConsoleOutput.SelectionColor = System.Drawing.Color.White;
             ConsoleOutput.AppendText(infoText + "\n");
+            LogToFile($"[Info] " + infoText);
         }
 
         //only for output message - single use
@@ -145,10 +197,10 @@ namespace RCT_Master
         //         WriteToLog
         //##############################
 
-        private void LogToFile(string message)
+        public void LogToFile(string message)
         {
-            string logFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "RTC_Master_log.txt");
-            string timeStampedMessage = $"[{DateTime.Now:yyy-MouseMove-DeviceDpi HH:MouseMove:ss}] {message}";
+            string logFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "log.txt");
+            string timeStampedMessage = $"[{DateTime.Now:yyy-MM-DD HH:mm:ss}] {message}";
             File.AppendAllText(logFilePath, timeStampedMessage + Environment.NewLine);
         }
 

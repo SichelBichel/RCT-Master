@@ -70,12 +70,13 @@ namespace RCT_Master
                     using (StreamReader reader = new StreamReader(filePath))
                     {
                         Config config = (Config)serializer.Deserialize(reader);
-                        form.AppendSuccess("CFG Loaded (Program.cs)");
+                        form.AppendSuccess("config.xml loaded and applied!");
                         hostName = config.HostName;
                         serverIp = config.SlaveIP;
                         serverPort = config.SlavePort;
                         token = config.Token;
                         form.Text = ("RTC Master: " + hostName);
+                        form.LogToFile("[LOG READ CONTENT] " + serverIp + ":" + serverPort + ":" + token + ":" + hostName + "[LOG READ CONTENT]");
                         return config;
                     }
                 }
@@ -108,8 +109,9 @@ namespace RCT_Master
                     serverIp = config.SlaveIP;
                     serverPort = config.SlavePort;
                     token = config.Token;
+                    form.LogToFile("[CFG WRITE CONTENT] " + serverIp + ":" + serverPort + ":" + token + ":" + hostName + "[CFG WRITE CONTENT]");
                 }
-                form.AppendSuccess("CFG saved");
+                form.AppendSuccess("config.xml saved!");
             }
             catch (Exception ex)
             {

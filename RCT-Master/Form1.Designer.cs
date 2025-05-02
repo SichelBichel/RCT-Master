@@ -285,6 +285,7 @@
             button18.TabIndex = 6;
             button18.Text = "Open Log";
             button18.UseVisualStyleBackColor = true;
+            button18.Click += openLog;
             // 
             // button3
             // 
@@ -316,6 +317,7 @@
             button4.TabIndex = 1;
             button4.Text = "Open Config";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += openCFG;
             // 
             // flowLayoutPanel1
             // 
