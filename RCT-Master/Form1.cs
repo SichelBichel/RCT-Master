@@ -229,13 +229,20 @@ namespace RCT_Master
             LogToFile($"[Info] " + infoText);
         }
 
+ 
+
         //only for output message - single use
         public void AppendMessageText(string messageText)
         {
             ConsoleOutput.SelectionColor = System.Drawing.Color.LightGreen;
             ConsoleOutput.AppendText(messageText);
         }
+        public void AppendReadbackText(string readbackText)
+        {
+            ConsoleOutput.SelectionColor = System.Drawing.Color.Cyan;
+            ConsoleOutput.AppendText(readbackText);
 
+        }
 
         //##############################
         //         WriteToLog

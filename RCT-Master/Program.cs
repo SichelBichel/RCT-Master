@@ -20,6 +20,7 @@ namespace RCT_Master
         public static string hashKey = "c71ee8230724cc1eef15740fba8506a2";
         public static TcpListener readbackListener;
         public static Thread listenerThread;
+        private static volatile bool listenerRunning = false;
 
 
         [STAThread]
@@ -50,7 +51,7 @@ namespace RCT_Master
 
 
                     NetworkStream stream = client.GetStream();
-                    string message = $"{hashKey}-{token}-{content}-{readbackPort}";
+                    string message = $"{hashKey}-{token}-{content}";
 
                     string encryptedMessage = CryptoCore.Encrypt(message);
 
@@ -98,6 +99,7 @@ namespace RCT_Master
                         form.Text = ("RCT-Master: " + hostName);
                         form.LogToFile("[LOG READ CONTENT] " + serverIp + ":" + serverPort + ":" + token + ":" + hostName + "[LOG READ CONTENT]");
                         form.LoadButtonConfigs(config);
+                        RestartReadback();
                         return config;
                     }
                 }
@@ -130,7 +132,6 @@ namespace RCT_Master
                     serverIp = config.SlaveIP;
                     serverPort = config.SlavePort;
                     token = config.Token;
-
                     // Die Buttons auslesen und in die Config setzen
 
 
@@ -151,6 +152,8 @@ namespace RCT_Master
 
         public static void InitReadback()
         {
+            if (listenerRunning) return;
+
             listenerThread = new Thread(() =>
             {
                 ReadbackListener(serverIp, readbackPort);
@@ -162,25 +165,27 @@ namespace RCT_Master
         {
             try
             {
-                TcpListener listener = new TcpListener(IPAddress.Parse(ipAddress), port);
-                listener.Start();
+                readbackListener = new TcpListener(IPAddress.Parse(ipAddress), port);
+                readbackListener.Start();
+                listenerRunning = true;
+
                 if (form.InvokeRequired)
                 {
                     form.Invoke(new Action(() =>
                     {
-                        form.AppendMessageText($"Listener läuft auf {ipAddress}:{port}");
+                        form.AppendMessageText($"Listener online at {ipAddress}:{port}");
                     }));
                 }
                 else
                 {
-                    form.AppendMessageText($"Listener läuft auf {ipAddress}:{port}");
+                    form.AppendMessageText($"Listener online at {ipAddress}:{port}");
                 }
 
-                while (true)
+                while (listenerRunning)
                 {
                     try
                     {
-                        using (TcpClient client = listener.AcceptTcpClient())
+                        using (TcpClient client = readbackListener.AcceptTcpClient())
                         using (NetworkStream stream = client.GetStream())
                         {
                             byte[] buffer = new byte[1024];
@@ -190,16 +195,39 @@ namespace RCT_Master
                             string encryptedMessage = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                             string decryptedMessage = CryptoCore.Decrypt(encryptedMessage);
 
+                            // parsing
+                            string parsedMessage;
+                            string responseMessage;
+
+                            string[] parts = decryptedMessage.Split('-');
+                            if (parts.Length == 3)
+                            {
+                                string hash = parts[0];
+                                string token = parts[1];
+                                string content = parts[2];
+
+                                parsedMessage = $"Hash: {hash}, Token: {token}, Content: {content}";
+                                responseMessage = CryptoCore.Encrypt($"ACK-{content}");
+                            }
+                            else
+                            {
+                                parsedMessage = $"Invalid Format: {decryptedMessage}";
+                                responseMessage = CryptoCore.Encrypt("ERR-InvalidFormat");
+                            }
+
+
                             if (form.InvokeRequired)
                             {
                                 form.Invoke(new Action(() =>
                                 {
-                                    form.AppendMessageText($"Empfangene Nachricht: {decryptedMessage}");
+                                    form.AppendReadbackText($"[READBACK]: ");
+                                    form.AppendInfoText(parsedMessage);
                                 }));
                             }
                             else
                             {
-                                form.AppendMessageText($"Empfangene Nachricht: {decryptedMessage}");
+                                form.AppendReadbackText($"[READBACK]: ");
+                                form.AppendInfoText(parsedMessage);
                             }
                         }
                     }
@@ -209,12 +237,12 @@ namespace RCT_Master
                         {
                             form.Invoke(new Action(() =>
                             {
-                                form.AppendError($"Fehler beim Verarbeiten der Verbindung: {innerEx.Message}");
+                                form.AppendError($"Error while processing connection: {innerEx.Message}");
                             }));
                         }
                         else
                         {
-                            form.AppendError($"Fehler beim Verarbeiten der Verbindung: {innerEx.Message}");
+                            form.AppendError($"Error while establishing connection: {innerEx.Message}");
                         }
                     }
                 }
@@ -225,17 +253,45 @@ namespace RCT_Master
                 {
                     form.Invoke(new Action(() =>
                     {
-                        form.AppendError($"Fehler im Listener: {ex.Message}");
+                        form.AppendError($"Error at Listener: {ex.Message}");
                     }));
                 }
                 else
                 {
-                    form.AppendError($"Fehler im Listener: {ex.Message}");
+                    form.AppendError($"Error at Listener: {ex.Message}");
                 }
             }
         }
 
+        public static void RestartReadback()
+        {
+            try
+            {
+                listenerRunning = false;
 
+                if (readbackListener != null)
+                {
+                    readbackListener.Stop();
+                    readbackListener = null;
+                }
+
+                if (listenerThread != null && listenerThread.IsAlive)
+                {
+                    listenerThread.Join(500);
+                    listenerThread = null;
+                }
+
+                Thread.Sleep(200);
+                InitReadback();
+            }
+            catch (Exception ex)
+            {
+                form.Invoke(new Action(() =>
+                {
+                    form.AppendError($"Error while restarting listener: {ex.Message}");
+                }));
+            }
+        }
 
     }
 }
