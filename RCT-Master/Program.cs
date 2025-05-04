@@ -194,6 +194,21 @@ namespace RCT_Master
                     using (TcpClient client = await readbackListener.AcceptTcpClientAsync())
                     using (NetworkStream stream = client.GetStream())
                     {
+                        var remoteIp = ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString();
+
+                        if (remoteIp != Program.serverIp)
+                        {
+                            if (WanMode == false)
+                            {
+                                form.Invoke(new Action(() =>
+                                {
+                                    form.AppendWarning($"gnored message from unauthorized IP: {remoteIp}");
+                                }));
+                            }
+                            continue; 
+                        }
+
+
                         byte[] buffer = new byte[1024];
                         int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length, cancellationToken);
 
