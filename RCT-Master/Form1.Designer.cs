@@ -73,6 +73,7 @@
             linkLabel1 = new LinkLabel();
             button6 = new Button();
             button7 = new Button();
+            label8 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -271,7 +272,7 @@
             pictureBox2.Image = Properties.Resources.BannerRCT1;
             pictureBox2.Location = new Point(256, 12);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(120, 116);
+            pictureBox2.Size = new Size(120, 96);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 11;
             pictureBox2.TabStop = false;
@@ -548,11 +549,22 @@
             button7.UseVisualStyleBackColor = true;
             button7.Click += inputHelp;
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Impact", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.Location = new Point(256, 108);
+            label8.Name = "label8";
+            label8.Size = new Size(55, 20);
+            label8.TabIndex = 18;
+            label8.Text = "Master";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1084, 611);
+            Controls.Add(label8);
             Controls.Add(button7);
             Controls.Add(button6);
             Controls.Add(linkLabel1);
@@ -623,5 +635,6 @@
         private CheckBox WanCheckBox;
         private Button button6;
         private Button button7;
+        private Label label8;
     }
 }
