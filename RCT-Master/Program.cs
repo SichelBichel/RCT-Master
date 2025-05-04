@@ -240,7 +240,7 @@ namespace RCT_Master
 
                                 form.Invoke(new Action(() =>
                                 {
-                                    form.AppendReadbackText("[READBACK]: ");
+                                    form.AppendReadbackText(serverIp + ": ");
                                     form.AppendInfoText(parsedMessage);
                                 }));
                             }
