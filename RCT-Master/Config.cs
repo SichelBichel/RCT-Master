@@ -116,5 +116,113 @@ namespace RCT_Master
 
         [XmlElement("EventButton14Content")]
         public string EventButton14Content { get; set; }
+
+        [XmlElement("EventButton15Name")]
+        public string EventButton15Name { get; set; }
+
+        [XmlElement("EventButton15Content")]
+        public string EventButton15Content { get; set; }
+
+        [XmlElement("EventButton16Name")]
+        public string EventButton16Name { get; set; }
+
+        [XmlElement("EventButton16Content")]
+        public string EventButton16Content { get; set; }
+
+        [XmlElement("EventButton17Name")]
+        public string EventButton17Name { get; set; }
+
+        [XmlElement("EventButton17Content")]
+        public string EventButton17Content { get; set; }
+
+        [XmlElement("EventButton18Name")]
+        public string EventButton18Name { get; set; }
+
+        [XmlElement("EventButton18Content")]
+        public string EventButton18Content { get; set; }
+
+        [XmlElement("EventButton19Name")]
+        public string EventButton19Name { get; set; }
+
+        [XmlElement("EventButton19Content")]
+        public string EventButton19Content { get; set; }
+
+        [XmlElement("EventButton20Name")]
+        public string EventButton20Name { get; set; }
+
+        [XmlElement("EventButton20Content")]
+        public string EventButton20Content { get; set; }
+
+        [XmlElement("EventButton21Name")]
+        public string EventButton21Name { get; set; }
+
+        [XmlElement("EventButton21Content")]
+        public string EventButton21Content { get; set; }
+
+        [XmlElement("EventButton22Name")]
+        public string EventButton22Name { get; set; }
+
+        [XmlElement("EventButton22Content")]
+        public string EventButton22Content { get; set; }
+
+        [XmlElement("EventButton23Name")]
+        public string EventButton23Name { get; set; }
+
+        [XmlElement("EventButton23Content")]
+        public string EventButton23Content { get; set; }
+
+        [XmlElement("EventButton24Name")]
+        public string EventButton24Name { get; set; }
+
+        [XmlElement("EventButton24Content")]
+        public string EventButton24Content { get; set; }
+
+        [XmlElement("EventButton25Name")]
+        public string EventButton25Name { get; set; }
+
+        [XmlElement("EventButton25Content")]
+        public string EventButton25Content { get; set; }
+
+        [XmlElement("EventButton26Name")]
+        public string EventButton26Name { get; set; }
+
+        [XmlElement("EventButton26Content")]
+        public string EventButton26Content { get; set; }
+
+        [XmlElement("EventButton27Name")]
+        public string EventButton27Name { get; set; }
+
+        [XmlElement("EventButton27Content")]
+        public string EventButton27Content { get; set; }
+
+        [XmlElement("EventButton28Name")]
+        public string EventButton28Name { get; set; }
+
+        [XmlElement("EventButton28Content")]
+        public string EventButton28Content { get; set; }
+
+        [XmlElement("EventButton29Name")]
+        public string EventButton29Name { get; set; }
+
+        [XmlElement("EventButton29Content")]
+        public string EventButton29Content { get; set; }
+
+        [XmlElement("EventButton30Name")]
+        public string EventButton30Name { get; set; }
+
+        [XmlElement("EventButton30Content")]
+        public string EventButton30Content { get; set; }
+
+        [XmlElement("EventButton31Name")]
+        public string EventButton31Name { get; set; }
+
+        [XmlElement("EventButton31Content")]
+        public string EventButton31Content { get; set; }
+
+        [XmlElement("EventButton32Name")]
+        public string EventButton32Name { get; set; }
+
+        [XmlElement("EventButton32Content")]
+        public string EventButton32Content { get; set; }
     }
 }

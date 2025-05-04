@@ -93,7 +93,61 @@ namespace RCT_Master
                 EventButton13Content = eventButton13.Tag != null ? eventButton13.Tag.ToString() : "empty",
 
                 EventButton14Name = eventButton14.Text,
-                EventButton14Content = eventButton14.Tag != null ? eventButton14.Tag.ToString() : "empty"
+                EventButton14Content = eventButton14.Tag != null ? eventButton14.Tag.ToString() : "empty",
+
+                EventButton15Name = eventButton15.Text,
+                EventButton15Content = eventButton15.Tag != null ? eventButton15.Tag.ToString() : "empty",
+
+                EventButton16Name = eventButton16.Text,
+                EventButton16Content = eventButton16.Tag != null ? eventButton16.Tag.ToString() : "empty",
+
+                EventButton17Name = eventButton17.Text,
+                EventButton17Content = eventButton17.Tag != null ? eventButton17.Tag.ToString() : "empty",
+
+                EventButton18Name = eventButton18.Text,
+                EventButton18Content = eventButton18.Tag != null ? eventButton18.Tag.ToString() : "empty",
+
+                EventButton19Name = eventButton19.Text,
+                EventButton19Content = eventButton19.Tag != null ? eventButton19.Tag.ToString() : "empty",
+
+                EventButton20Name = eventButton20.Text,
+                EventButton20Content = eventButton20.Tag != null ? eventButton20.Tag.ToString() : "empty",
+
+                EventButton21Name = eventButton21.Text,
+                EventButton21Content = eventButton21.Tag != null ? eventButton21.Tag.ToString() : "empty",
+
+                EventButton22Name = eventButton22.Text,
+                EventButton22Content = eventButton22.Tag != null ? eventButton22.Tag.ToString() : "empty",
+
+                EventButton23Name = eventButton23.Text,
+                EventButton23Content = eventButton23.Tag != null ? eventButton23.Tag.ToString() : "empty",
+
+                EventButton24Name = eventButton24.Text,
+                EventButton24Content = eventButton24.Tag != null ? eventButton24.Tag.ToString() : "empty",
+
+                EventButton25Name = eventButton25.Text,
+                EventButton25Content = eventButton25.Tag != null ? eventButton25.Tag.ToString() : "empty",
+
+                EventButton26Name = eventButton26.Text,
+                EventButton26Content = eventButton26.Tag != null ? eventButton26.Tag.ToString() : "empty",
+
+                EventButton27Name = eventButton27.Text,
+                EventButton27Content = eventButton27.Tag != null ? eventButton27.Tag.ToString() : "empty",
+
+                EventButton28Name = eventButton28.Text,
+                EventButton28Content = eventButton28.Tag != null ? eventButton28.Tag.ToString() : "empty",
+
+                EventButton29Name = eventButton29.Text,
+                EventButton29Content = eventButton29.Tag != null ? eventButton29.Tag.ToString() : "empty",
+
+                EventButton30Name = eventButton30.Text,
+                EventButton30Content = eventButton30.Tag != null ? eventButton30.Tag.ToString() : "empty",
+
+                EventButton31Name = eventButton31.Text,
+                EventButton31Content = eventButton31.Tag != null ? eventButton31.Tag.ToString() : "empty",
+
+                EventButton32Name = eventButton32.Text,
+                EventButton32Content = eventButton32.Tag != null ? eventButton32.Tag.ToString() : "empty",
 
             };
             Program.SaveConfigFile(config, "config.xml");
@@ -299,45 +353,132 @@ namespace RCT_Master
         {
             eventButton1.Text = config.EventButton1Name;
             eventButton1.Tag = config.EventButton1Content;
+            HighlightIfAssigned(eventButton1);
 
             eventButton2.Text = config.EventButton2Name;
             eventButton2.Tag = config.EventButton2Content;
+            HighlightIfAssigned(eventButton2);
 
             eventButton3.Text = config.EventButton3Name;
             eventButton3.Tag = config.EventButton3Content;
+            HighlightIfAssigned(eventButton3);
 
             eventButton4.Text = config.EventButton4Name;
             eventButton4.Tag = config.EventButton4Content;
+            HighlightIfAssigned(eventButton4);
 
             eventButton5.Text = config.EventButton5Name;
             eventButton5.Tag = config.EventButton5Content;
+            HighlightIfAssigned(eventButton5);
 
             eventButton6.Text = config.EventButton6Name;
             eventButton6.Tag = config.EventButton6Content;
+            HighlightIfAssigned(eventButton6);
 
             eventButton7.Text = config.EventButton7Name;
             eventButton7.Tag = config.EventButton7Content;
+            HighlightIfAssigned(eventButton7);
 
             eventButton8.Text = config.EventButton8Name;
             eventButton8.Tag = config.EventButton8Content;
+            HighlightIfAssigned(eventButton8);
 
             eventButton9.Text = config.EventButton9Name;
             eventButton9.Tag = config.EventButton9Content;
+            HighlightIfAssigned(eventButton9);
 
             eventButton10.Text = config.EventButton10Name;
             eventButton10.Tag = config.EventButton10Content;
+            HighlightIfAssigned(eventButton10);
 
             eventButton11.Text = config.EventButton11Name;
             eventButton11.Tag = config.EventButton11Content;
+            HighlightIfAssigned(eventButton11);
 
             eventButton12.Text = config.EventButton12Name;
             eventButton12.Tag = config.EventButton12Content;
+            HighlightIfAssigned(eventButton12);
 
             eventButton13.Text = config.EventButton13Name;
             eventButton13.Tag = config.EventButton13Content;
+            HighlightIfAssigned(eventButton13);
 
             eventButton14.Text = config.EventButton14Name;
             eventButton14.Tag = config.EventButton14Content;
+            HighlightIfAssigned(eventButton14);
+
+            eventButton15.Text = config.EventButton15Name;
+            eventButton15.Tag = config.EventButton15Content;
+            HighlightIfAssigned(eventButton15);
+
+            eventButton16.Text = config.EventButton16Name;
+            eventButton16.Tag = config.EventButton16Content;
+            HighlightIfAssigned(eventButton16);
+
+            eventButton17.Text = config.EventButton17Name;
+            eventButton17.Tag = config.EventButton17Content;
+            HighlightIfAssigned(eventButton17);
+
+            eventButton18.Text = config.EventButton18Name;
+            eventButton18.Tag = config.EventButton18Content;
+            HighlightIfAssigned(eventButton18);
+
+            eventButton19.Text = config.EventButton19Name;
+            eventButton19.Tag = config.EventButton19Content;
+            HighlightIfAssigned(eventButton19);
+
+            eventButton20.Text = config.EventButton20Name;
+            eventButton20.Tag = config.EventButton20Content;
+            HighlightIfAssigned(eventButton20);
+
+            eventButton21.Text = config.EventButton21Name;
+            eventButton21.Tag = config.EventButton21Content;
+            HighlightIfAssigned(eventButton21);
+
+            eventButton22.Text = config.EventButton22Name;
+            eventButton22.Tag = config.EventButton22Content;
+            HighlightIfAssigned(eventButton22);
+
+            eventButton23.Text = config.EventButton23Name;
+            eventButton23.Tag = config.EventButton23Content;
+            HighlightIfAssigned(eventButton23);
+
+            eventButton24.Text = config.EventButton24Name;
+            eventButton24.Tag = config.EventButton24Content;
+            HighlightIfAssigned(eventButton24);
+
+            eventButton25.Text = config.EventButton25Name;
+            eventButton25.Tag = config.EventButton25Content;
+            HighlightIfAssigned(eventButton25);
+
+            eventButton26.Text = config.EventButton26Name;
+            eventButton26.Tag = config.EventButton26Content;
+            HighlightIfAssigned(eventButton26);
+
+            eventButton27.Text = config.EventButton27Name;
+            eventButton27.Tag = config.EventButton27Content;
+            HighlightIfAssigned(eventButton27);
+
+            eventButton28.Text = config.EventButton28Name;
+            eventButton28.Tag = config.EventButton28Content;
+            HighlightIfAssigned(eventButton28);
+
+            eventButton29.Text = config.EventButton29Name;
+            eventButton29.Tag = config.EventButton29Content;
+            HighlightIfAssigned(eventButton29);
+
+            eventButton30.Text = config.EventButton30Name;
+            eventButton30.Tag = config.EventButton30Content;
+            HighlightIfAssigned(eventButton30);
+
+            eventButton31.Text = config.EventButton31Name;
+            eventButton31.Tag = config.EventButton31Content;
+            HighlightIfAssigned(eventButton31);
+
+            eventButton32.Text = config.EventButton32Name;
+            eventButton32.Tag = config.EventButton32Content;
+            HighlightIfAssigned(eventButton32);
+
         }
 
 
@@ -422,11 +563,106 @@ namespace RCT_Master
         {
             Program.SendMessage(eventButton14.Tag.ToString());
         }
+        private void buttonAction15(object sender, EventArgs e)
+        {
+            Program.SendMessage(eventButton15.Tag.ToString());
+        }
+
+        private void buttonAction16(object sender, EventArgs e)
+        {
+            Program.SendMessage(eventButton16.Tag.ToString());
+        }
+        private void buttonAction17(object sender, EventArgs e)
+        {
+            Program.SendMessage(eventButton17.Tag.ToString());
+        }
+
+        private void buttonAction18(object sender, EventArgs e)
+        {
+            Program.SendMessage(eventButton18.Tag.ToString());
+        }
+
+        private void buttonAction19(object sender, EventArgs e)
+        {
+            Program.SendMessage(eventButton19.Tag.ToString());
+        }
+
+        private void buttonAction20(object sender, EventArgs e)
+        {
+            Program.SendMessage(eventButton20.Tag.ToString());
+        }
+
+        private void buttonAction21(object sender, EventArgs e)
+        {
+            Program.SendMessage(eventButton21.Tag.ToString());
+        }
+
+        private void buttonAction22(object sender, EventArgs e)
+        {
+            Program.SendMessage(eventButton22.Tag.ToString());
+        }
+
+        private void buttonAction23(object sender, EventArgs e)
+        {
+            Program.SendMessage(eventButton23.Tag.ToString());
+        }
+
+        private void buttonAction24(object sender, EventArgs e)
+        {
+            Program.SendMessage(eventButton24.Tag.ToString());
+        }
+
+        private void buttonAction25(object sender, EventArgs e)
+        {
+            Program.SendMessage(eventButton25.Tag.ToString());
+        }
+
+        private void buttonAction26(object sender, EventArgs e)
+        {
+            Program.SendMessage(eventButton26.Tag.ToString());
+        }
+
+        private void buttonAction27(object sender, EventArgs e)
+        {
+            Program.SendMessage(eventButton27.Tag.ToString());
+        }
+
+        private void buttonAction28(object sender, EventArgs e)
+        {
+            Program.SendMessage(eventButton28.Tag.ToString());
+        }
+
+        private void buttonAction29(object sender, EventArgs e)
+        {
+            Program.SendMessage(eventButton29.Tag.ToString());
+        }
+
+        private void buttonAction30(object sender, EventArgs e)
+        {
+            Program.SendMessage(eventButton30.Tag.ToString());
+        }
+
+        private void buttonAction31(object sender, EventArgs e)
+        {
+            Program.SendMessage(eventButton31.Tag.ToString());
+        }
+
+        private void buttonAction32(object sender, EventArgs e)
+        {
+            Program.SendMessage(eventButton32.Tag.ToString());
+        }
+
+
 
         private void inputWanChanged(object sender, EventArgs e)
         {
             MessageBox.Show("WAN Mode: \n\nOn: Invalid Responses are filtered \nOff: Invalid Responses are displayed ", "RCT", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
         }
+
+
+
+
+
 
         private async void delCFG(object sender, EventArgs e)
         {
@@ -501,9 +737,62 @@ namespace RCT_Master
                 EventButton13Name = "none",
                 EventButton13Content = "empty",
                 EventButton14Name = "none",
-                EventButton14Content = "empty"
+                EventButton14Content = "empty",
+                EventButton15Name = "none",
+                EventButton15Content = "empty",
+                EventButton16Name = "none",
+                EventButton16Content = "empty",
+                EventButton17Name = "none",
+                EventButton17Content = "empty",
+                EventButton18Name = "none",
+                EventButton18Content = "empty",
+                EventButton19Name = "none",
+                EventButton19Content = "empty",
+                EventButton20Name = "none",
+                EventButton20Content = "empty",
+                EventButton21Name = "none",
+                EventButton21Content = "empty",
+                EventButton22Name = "none",
+                EventButton22Content = "empty",
+                EventButton23Name = "none",
+                EventButton23Content = "empty",
+                EventButton24Name = "none",
+                EventButton24Content = "empty",
+                EventButton25Name = "none",
+                EventButton25Content = "empty",
+                EventButton26Name = "none",
+                EventButton26Content = "empty",
+                EventButton27Name = "none",
+                EventButton27Content = "empty",
+                EventButton28Name = "none",
+                EventButton28Content = "empty",
+                EventButton29Name = "none",
+                EventButton29Content = "empty",
+                EventButton30Name = "none",
+                EventButton30Content = "empty",
+                EventButton31Name = "none",
+                EventButton31Content = "empty",
+                EventButton32Name = "none",
+                EventButton32Content = "empty"
             };
         }
+
+
+        private void HighlightIfAssigned(Button button)
+        {
+            string content = button.Tag?.ToString() ?? "";
+
+            if (!string.Equals(content, "empty"))
+            {
+                button.BackColor = Color.Aqua;
+            }
+            else
+            {
+                button.BackColor = Color.White;
+            }
+
+        }
+
 
         private void inputUpdate(object sender, EventArgs e)
         {

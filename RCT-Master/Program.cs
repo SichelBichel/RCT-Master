@@ -51,19 +51,25 @@ namespace RCT_Master
                 using (TcpClient client = new TcpClient(serverIp, serverPort))
                 {
 
+                    if (!string.IsNullOrEmpty(content) && content != "empty")
+                    {
+                        NetworkStream stream = client.GetStream();
+                        string message = $"{hashKey}-{token}-{content}";
 
-                    NetworkStream stream = client.GetStream();
-                    string message = $"{hashKey}-{token}-{content}";
-
-                    string encryptedMessage = CryptoCore.Encrypt(message);
+                        string encryptedMessage = CryptoCore.Encrypt(message);
 
 
-                    byte[] data = Encoding.UTF8.GetBytes(encryptedMessage);
+                        byte[] data = Encoding.UTF8.GetBytes(encryptedMessage);
 
-                    // send
-                    stream.Write(data, 0, data.Length);
-                    form.AppendMessageText("Message Sent: ");
-                    form.AppendInfoText(content);
+                        // send
+                        stream.Write(data, 0, data.Length);
+                        form.AppendMessageText("Command sent: ");
+                        form.AppendInfoText(content);
+                    }
+                    else
+                    {
+                        form.AppendWarning("Function not assigned.");
+                    }
                 }
             }
             catch (Exception ex)
