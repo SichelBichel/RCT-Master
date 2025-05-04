@@ -100,7 +100,7 @@
             richTextSlavePort.Name = "richTextSlavePort";
             richTextSlavePort.Size = new Size(130, 31);
             richTextSlavePort.TabIndex = 1;
-            richTextSlavePort.Text = "65535";
+            richTextSlavePort.Text = "65534";
             richTextSlavePort.TextChanged += richTextSlavePort_TextChanged;
             // 
             // panel1

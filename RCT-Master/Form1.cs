@@ -470,7 +470,7 @@ namespace RCT_Master
             {
                 HostName = "HostName",
                 SlaveIP = "127.0.0.1",
-                SlavePort = 65534,
+                SlavePort = 65000,
                 Token = "12345",
                 WanMode = false,
 
