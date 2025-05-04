@@ -202,6 +202,35 @@ namespace RCT_Master
         }
 
 
+        private void inputHelp(object sender, EventArgs e)
+        {
+            try
+            {
+                if (File.Exists("help.txt"))
+                {
+                    try
+                    {
+                        Process.Start(new ProcessStartInfo
+                        {
+                            FileName = "help.txt",
+                            UseShellExecute = true
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        AppendError(ex.ToString());
+                    }
+                }
+                else
+                {
+                    reload_CFG(null, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                AppendError(ex.ToString());
+            }
+        }
 
         //##############################
         //         RichText Append
@@ -481,5 +510,6 @@ namespace RCT_Master
             AppendWarning("\nAutomatic Updates are not available yet.\n Please visit:\n https://rehoga-interactive.com/remote-control-terminal \n and crosscheck the version number\n");
             AppendError("ALWAYS UPDATE SLAVES TOO!! DIFFERENT VERSIONS CAN CAUSE ISSUES");
         }
+
     }
 }
