@@ -51,7 +51,7 @@ namespace RCT_Master
                 using (TcpClient client = new TcpClient(serverIp, serverPort))
                 {
 
-                    if (!string.IsNullOrEmpty(content) && content != "empty")
+                    if (!string.IsNullOrEmpty(content) && content != "empty" && content != "none")
                     {
                         NetworkStream stream = client.GetStream();
                         string message = $"{hashKey}-{token}-{content}";

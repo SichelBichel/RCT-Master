@@ -782,7 +782,8 @@ namespace RCT_Master
         {
             string content = button.Tag?.ToString() ?? "";
 
-            if (!string.Equals(content, "empty"))
+            if (!string.Equals(content, "empty", StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(content, "none", StringComparison.OrdinalIgnoreCase))
             {
                 button.BackColor = Color.Aqua;
             }
