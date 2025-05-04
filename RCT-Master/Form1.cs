@@ -44,7 +44,7 @@ namespace RCT_Master
 
         private void save_CFG(object sender, EventArgs e)
         {
-            AppendInfoText("Saving config.xml ...");
+            AppendInfoText("Saving MasterConfig.xml ...");
             Config config = new Config
             {
                 HostName = richTextHostname.Text,
@@ -150,13 +150,13 @@ namespace RCT_Master
                 EventButton32Content = eventButton32.Tag != null ? eventButton32.Tag.ToString() : "empty",
 
             };
-            Program.SaveConfigFile(config, "config.xml");
+            Program.SaveConfigFile(config, "MasterConfig.xml");
         }
 
         private async void reload_CFG(object sender, EventArgs e)
         {
-            AppendInfoText("Reloading config.xml ...");
-            Config config = Program.LoadConfig("config.xml", false);
+            AppendInfoText("Reloading MasterConfig.xml ...");
+            Config config = Program.LoadConfig("MasterConfig.xml", false);
 
             if (config != null)
             {
@@ -169,9 +169,9 @@ namespace RCT_Master
             else
             {
                 await Task.Delay(50);
-                AppendInfoText("Generating new config.xml ...");
+                AppendInfoText("Generating new MasterConfig.xml ...");
                 await Task.Delay(100);
-                AppendSuccess("config.xml Generated!");
+                AppendSuccess("MasterConfig.xml Generated!");
                 save_CFG(null, null);
             }
         }
@@ -214,13 +214,13 @@ namespace RCT_Master
         {
             try
             {
-                if (File.Exists("config.xml"))
+                if (File.Exists("MasterConfig.xml"))
                 {
                     try
                     {
                         Process.Start(new ProcessStartInfo
                         {
-                            FileName = "config.xml",
+                            FileName = "MasterConfig.xml",
                             UseShellExecute = true
                         });
                     }
@@ -680,7 +680,7 @@ namespace RCT_Master
                 return;
             }
 
-            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.xml");
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "MasterConfig.xml");
 
             if (File.Exists(filePath))
             {
@@ -689,13 +689,13 @@ namespace RCT_Master
             }
             else
             {
-                AppendWarning("config.xml does not exist.");
+                AppendWarning("MasterConfig.xml does not exist.");
             }
 
             await Task.Delay(250);
 
             Config defaultConfig = CreateDefaultConfig();
-            Program.SaveConfigFile(defaultConfig, "config.xml");
+            Program.SaveConfigFile(defaultConfig, "MasterConfig.xml");
             await Task.Delay(200);
             reload_CFG(null, null);
         }

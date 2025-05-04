@@ -102,7 +102,7 @@ namespace RCT_Master
                         serverIp = config.SlaveIP;
                         if (silentMode == false)
                         {
-                            form.AppendSuccess("config.xml loaded and applied!");
+                            form.AppendSuccess("MasterConfig.xml loaded and applied!");
                         }
                         serverPort = config.SlavePort;
                         token = config.Token;
@@ -117,13 +117,13 @@ namespace RCT_Master
                 }
                 else
                 {
-                    form.AppendWarning("config.xml not existing");
+                    form.AppendWarning("MasterConfig.xml not existing");
                     return null;
                 }
             }
             catch (Exception ex)
             {
-                form.AppendError("config.xml read error: " + ex.Message);
+                form.AppendError("MasterConfig.xml read error: " + ex.Message);
                 return null;
             }
         }
@@ -147,9 +147,9 @@ namespace RCT_Master
                     WanMode = config.WanMode;
                     form.LogToFile("[CFG WRITE CONTENT] " + serverIp + ":" + serverPort + ":" + token + ":" + hostName + "[CFG WRITE CONTENT]");
                 }
-                form.AppendSuccess("config.xml saved!");
+                form.AppendSuccess("MasterConfig.xml saved!");
                 await Task.Delay(200);
-                LoadConfig("config.xml", true);
+                LoadConfig("MasterConfig.xml", true);
             }
             catch (Exception ex)
             {
