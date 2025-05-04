@@ -223,7 +223,7 @@ namespace RCT_Master
                 }
                 else
                 {
-                    reload_CFG(null, null);
+                    AppendWarning("info file not found!");
                 }
             }
             catch (Exception ex)
