@@ -785,11 +785,13 @@ namespace RCT_Master
             if (!string.Equals(content, "empty", StringComparison.OrdinalIgnoreCase) &&
                 !string.Equals(content, "none", StringComparison.OrdinalIgnoreCase))
             {
-                button.BackColor = Color.Aqua;
+                button.BackColor = Color.White;
+                button.Visible = true;
             }
             else
             {
                 button.BackColor = Color.White;
+                button.Visible = false;
             }
 
         }
