@@ -791,7 +791,7 @@ namespace RCT_Master
             else
             {
                 button.BackColor = Color.White;
-               // button.Visible = false;
+                // button.Visible = false;
             }
 
         }
@@ -803,5 +803,9 @@ namespace RCT_Master
             AppendError("ALWAYS UPDATE SLAVES TOO!! DIFFERENT VERSIONS CAN CAUSE ISSUES");
         }
 
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -288,10 +288,10 @@
             // 
             // pictureBox2
             // 
-            pictureBox2.Image = Properties.Resources.BannerRCT1;
-            pictureBox2.Location = new Point(256, 12);
+            pictureBox2.Image = Properties.Resources.RCT;
+            pictureBox2.Location = new Point(256, 6);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(120, 96);
+            pictureBox2.Size = new Size(110, 102);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 11;
             pictureBox2.TabStop = false;
@@ -303,7 +303,7 @@
             label6.Name = "label6";
             label6.Size = new Size(75, 15);
             label6.TabIndex = 12;
-            label6.Text = "Version: 1.0.0";
+            label6.Text = "Version: 1.0.1";
             // 
             // panel2
             // 
@@ -771,11 +771,12 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Impact", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.Location = new Point(256, 108);
+            label8.Location = new Point(280, 109);
             label8.Name = "label8";
             label8.Size = new Size(55, 20);
             label8.TabIndex = 18;
             label8.Text = "Master";
+            label8.Click += label8_Click;
             // 
             // Form1
             // 
@@ -796,7 +797,7 @@
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
-            Text = "RCT-Master";
+            Text = "RCT-Master - Remote Control Terminal";
             Load += Form1_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
