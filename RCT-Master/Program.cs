@@ -258,7 +258,6 @@ namespace RCT_Master
                                         form.AppendWarning(parsedMessage);
                                     }));
                                 }
-
                             }
                         }
                     }
