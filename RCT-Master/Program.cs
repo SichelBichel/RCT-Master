@@ -208,7 +208,7 @@ namespace RCT_Master
                             {
                                 form.Invoke(new Action(() =>
                                 {
-                                    form.AppendWarning($"gnored message from unauthorized IP: {remoteIp}");
+                                    form.AppendWarning($"ignored message from unauthorized IP: {remoteIp}");
                                 }));
                             }
                             continue; 
