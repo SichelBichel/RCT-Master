@@ -1,1 +1,1 @@
-https://rehoga-interactive.com/rct
+For information visit: https://rehoga-interactive.com/rct
