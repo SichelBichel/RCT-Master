@@ -5,6 +5,8 @@ using System.Windows.Forms;
 
 namespace RCT_Master
 {
+
+    //ADDED in 1.0.2: AutoScroll
     public partial class Form1 : Form
     {
         public Form1()
@@ -294,24 +296,28 @@ namespace RCT_Master
             ConsoleOutput.SelectionColor = System.Drawing.Color.Red;
             ConsoleOutput.AppendText(errorText + "\n");
             LogToFile("[Error] " + errorText);
+            ConcoleOutputTextChanged(null, null);
         }
         public void AppendWarning(string warningText)
         {
             ConsoleOutput.SelectionColor = System.Drawing.Color.Yellow;
             ConsoleOutput.AppendText(warningText + "\n");
             LogToFile($"[Warning] " + warningText);
+            ConcoleOutputTextChanged(null, null);
         }
         public void AppendSuccess(string successText)
         {
             ConsoleOutput.SelectionColor = System.Drawing.Color.LightGreen;
             ConsoleOutput.AppendText(successText + "\n");
             LogToFile($"[Success] " + successText);
+            ConcoleOutputTextChanged(null, null);
         }
         public void AppendInfoText(string infoText)
         {
             ConsoleOutput.SelectionColor = System.Drawing.Color.White;
             ConsoleOutput.AppendText(infoText + "\n");
             LogToFile($"[Info] " + infoText);
+            ConcoleOutputTextChanged(null, null);
         }
 
 
@@ -321,11 +327,13 @@ namespace RCT_Master
         {
             ConsoleOutput.SelectionColor = System.Drawing.Color.LightGreen;
             ConsoleOutput.AppendText(messageText);
+            ConcoleOutputTextChanged(null, null);
         }
         public void AppendReadbackText(string readbackText)
         {
             ConsoleOutput.SelectionColor = System.Drawing.Color.Cyan;
             ConsoleOutput.AppendText(readbackText);
+            ConcoleOutputTextChanged(null, null);
 
         }
 
@@ -796,7 +804,6 @@ namespace RCT_Master
 
         }
 
-
         private void inputUpdate(object sender, EventArgs e)
         {
             AppendWarning("\nAutomatic Updates are not available yet.\n Please visit:\n https://rehoga-interactive.com/remote-control-terminal \n and crosscheck the version number\n");
@@ -806,6 +813,12 @@ namespace RCT_Master
         private void label8_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void ConcoleOutputTextChanged(object sender, EventArgs e)
+        {
+            ConsoleOutput.SelectionStart = ConsoleOutput.Text.Length;
+            ConsoleOutput.ScrollToCaret();
         }
     }
 }

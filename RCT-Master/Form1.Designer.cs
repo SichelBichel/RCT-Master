@@ -274,6 +274,7 @@
             ConsoleOutput.Size = new Size(405, 589);
             ConsoleOutput.TabIndex = 3;
             ConsoleOutput.Text = "";
+            ConsoleOutput.TextChanged += ConcoleOutputTextChanged;
             // 
             // pictureBox1
             // 
@@ -303,7 +304,7 @@
             label6.Name = "label6";
             label6.Size = new Size(75, 15);
             label6.TabIndex = 12;
-            label6.Text = "Version: 1.0.1";
+            label6.Text = "Version: 1.0.2";
             // 
             // panel2
             // 
