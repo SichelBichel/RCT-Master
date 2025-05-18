@@ -9,8 +9,8 @@ namespace RCT_Master
 {
     public static class CryptoCore
     {
-        private static readonly byte[] key = Encoding.UTF8.GetBytes("ChangeAndCompile"); // 16b
-        private static readonly byte[] iv = Encoding.UTF8.GetBytes("ChangeAndCompile"); // 16b
+        private static readonly byte[] key = Encoding.UTF8.GetBytes("ChangeAndCompile"); // 16b CHANGE HERE
+        private static readonly byte[] iv = Encoding.UTF8.GetBytes("ChangeAndCompile"); // 16b CHANGE HERE
 
         public static string Encrypt(string plainText)
         {
