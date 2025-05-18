@@ -75,8 +75,19 @@ namespace RCT_Master
         {
             try
             {
-                using (TcpClient client = new TcpClient(serverIp, serverPort))
+                using (TcpClient client = new TcpClient())
                 {
+                    // Set the timeout
+                    IAsyncResult result = client.BeginConnect(serverIp, serverPort, null, null);
+                    bool success = result.AsyncWaitHandle.WaitOne(TimeSpan.FromMilliseconds(800));
+
+                    if (!success)
+                    {
+                        form.AppendError("Connection timed out (800ms).");
+                        return;
+                    }
+
+                    client.EndConnect(result);
 
                     if (!string.IsNullOrEmpty(content) && content != "empty" && content != "none")
                     {
@@ -84,11 +95,8 @@ namespace RCT_Master
                         string message = $"{hashKey}-{token}-{content}";
 
                         string encryptedMessage = CryptoCore.Encrypt(message);
-
-
                         byte[] data = Encoding.UTF8.GetBytes(encryptedMessage);
 
-                        // send
                         stream.Write(data, 0, data.Length);
                         form.AppendMessageText("Command sent: ");
                         form.AppendInfoText(content);

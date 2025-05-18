@@ -141,7 +141,7 @@
             panel1.Controls.Add(label1);
             panel1.Controls.Add(richTextSlavePort);
             panel1.Controls.Add(richTextSlaveIP);
-            panel1.Location = new Point(12, 134);
+            panel1.Location = new Point(12, 136);
             panel1.Name = "panel1";
             panel1.Size = new Size(187, 444);
             panel1.TabIndex = 2;
@@ -150,7 +150,7 @@
             // comboBoxProfiles
             // 
             comboBoxProfiles.FormattingEnabled = true;
-            comboBoxProfiles.Location = new Point(27, 5);
+            comboBoxProfiles.Location = new Point(27, 9);
             comboBoxProfiles.Name = "comboBoxProfiles";
             comboBoxProfiles.Size = new Size(126, 23);
             comboBoxProfiles.TabIndex = 8;
