@@ -11,7 +11,8 @@ namespace RCT_Master
     internal static class Program
     {
         public static Form1 form;
-
+        public static string SelectedConfigName = "MasterConfig.xml";
+        public static string ConfigsDirectory => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "configs");
         public static string hostName = "EnterTargetHostname";
         public static string serverIp = "127.0.0.1";
         public static int serverPort = 65534;
@@ -40,6 +41,32 @@ namespace RCT_Master
             Program.InitReadback();
         }
 
+        //##############################
+        //         Profile Management
+        //##############################
+        public static string GetSelectedConfigPath()
+        {
+            return Path.Combine(ConfigsDirectory, SelectedConfigName);
+        }
+
+        public static void EnsureConfigFolderExists()
+        {
+            if (!Directory.Exists(ConfigsDirectory))
+            {
+                Directory.CreateDirectory(ConfigsDirectory);
+            }
+        }
+
+        public static void SaveLastProfile(string name)
+        {
+            File.WriteAllText(Path.Combine(ConfigsDirectory, "last.txt"), name);
+        }
+
+        public static string LoadLastProfile()
+        {
+            string file = Path.Combine(ConfigsDirectory, "last.txt");
+            return File.Exists(file) ? File.ReadAllText(file) : null;
+        }
 
         //##############################
         //         Message Handler
@@ -102,7 +129,7 @@ namespace RCT_Master
                         serverIp = config.SlaveIP;
                         if (silentMode == false)
                         {
-                            form.AppendSuccess("MasterConfig.xml loaded and applied!");
+                            form.Invoke(new Action(() => form.AppendSuccess($"{SelectedConfigName} loaded and applied!")));
                         }
                         serverPort = config.SlavePort;
                         token = config.Token;
@@ -129,12 +156,10 @@ namespace RCT_Master
         }
 
         //CFG Writer
-        public static async void SaveConfigFile(Config config, string fileName)
+        public static async void SaveConfigFile(Config config, string filePath)
         {
             try
             {
-                string rootPath = AppDomain.CurrentDomain.BaseDirectory;
-                string filePath = Path.Combine(rootPath, fileName);
                 XmlSerializer serializer = new XmlSerializer(typeof(Config));
 
                 using (StreamWriter writer = new StreamWriter(filePath))
@@ -147,9 +172,10 @@ namespace RCT_Master
                     WanMode = config.WanMode;
                     form.LogToFile("[CFG WRITE CONTENT] " + serverIp + ":" + serverPort + ":" + token + ":" + hostName + "[CFG WRITE CONTENT]");
                 }
-                form.AppendSuccess("MasterConfig.xml saved!");
+
+                form.AppendSuccess("Config saved!");
                 await Task.Delay(200);
-                LoadConfig("MasterConfig.xml", true);
+                LoadConfig(filePath, true);
             }
             catch (Exception ex)
             {

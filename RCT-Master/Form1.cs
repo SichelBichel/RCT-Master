@@ -21,10 +21,14 @@ namespace RCT_Master
 
         private async void PostInit()
         {
+
             AppendInfoText("Waiting for PostInit...");
             await Task.Delay(1000);
             Program.coreInit();
-            reload_CFG(null, null);
+            Program.SelectedConfigName = Program.LoadLastProfile() ?? "MasterConfig.xml";
+            ReloadAvailableConfigs();
+            Program.LoadConfig(Program.GetSelectedConfigPath(), true);
+            //reload_CFG(null, null);
             testButton(null, null);
             AppendSuccess("Post Init successful!");
             postPostInit();
@@ -46,7 +50,7 @@ namespace RCT_Master
 
         private void save_CFG(object sender, EventArgs e)
         {
-            AppendInfoText("Saving MasterConfig.xml ...");
+            AppendInfoText("Saving selected Config ...");
             Config config = new Config
             {
                 HostName = richTextHostname.Text,
@@ -152,13 +156,13 @@ namespace RCT_Master
                 EventButton32Content = eventButton32.Tag != null ? eventButton32.Tag.ToString() : "empty",
 
             };
-            Program.SaveConfigFile(config, "MasterConfig.xml");
+            Program.SaveConfigFile(config, Program.GetSelectedConfigPath());
         }
 
         private async void reload_CFG(object sender, EventArgs e)
         {
-            AppendInfoText("Reloading MasterConfig.xml ...");
-            Config config = Program.LoadConfig("MasterConfig.xml", false);
+            AppendInfoText("Reloading selected config ...");
+            Config config = Program.LoadConfig(Program.GetSelectedConfigPath(), false);
 
             if (config != null)
             {
@@ -214,15 +218,16 @@ namespace RCT_Master
 
         private void openCFG(object sender, EventArgs e)
         {
+            string filePath = Program.GetSelectedConfigPath();
             try
             {
-                if (File.Exists("MasterConfig.xml"))
+                if (File.Exists(filePath))
                 {
                     try
                     {
                         Process.Start(new ProcessStartInfo
                         {
-                            FileName = "MasterConfig.xml",
+                            FileName = filePath,
                             UseShellExecute = true
                         });
                     }
@@ -688,7 +693,7 @@ namespace RCT_Master
                 return;
             }
 
-            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "MasterConfig.xml");
+            string filePath = Program.GetSelectedConfigPath();
 
             if (File.Exists(filePath))
             {
@@ -703,7 +708,7 @@ namespace RCT_Master
             await Task.Delay(250);
 
             Config defaultConfig = CreateDefaultConfig();
-            Program.SaveConfigFile(defaultConfig, "MasterConfig.xml");
+            Program.SaveConfigFile(defaultConfig, filePath);
             await Task.Delay(200);
             reload_CFG(null, null);
         }
@@ -820,5 +825,53 @@ namespace RCT_Master
             ConsoleOutput.SelectionStart = ConsoleOutput.Text.Length;
             ConsoleOutput.ScrollToCaret();
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+
+
+        // ProfileLogic
+
+        private void ReloadAvailableConfigs()
+        {
+            comboBoxProfiles.Items.Clear();
+
+            Program.EnsureConfigFolderExists();
+
+            var configFiles = Directory.GetFiles(Program.ConfigsDirectory, "*.xml");
+
+            foreach (var file in configFiles)
+            {
+                var name = Path.GetFileName(file);
+                comboBoxProfiles.Items.Add(name);
+            }
+
+            if (comboBoxProfiles.Items.Count > 0)
+            {
+                comboBoxProfiles.SelectedItem = Program.SelectedConfigName;
+            }
+
+            AppendInfoText($"Found {comboBoxProfiles.Items.Count} config(s).");
+        }
+
+        private void comboBoxProfiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+ 
+        }
+
+        private void ProfileChanged(object sender, EventArgs e)
+        {
+            string selectedFile = comboBoxProfiles.SelectedItem?.ToString();
+            if (!string.IsNullOrEmpty(selectedFile))
+            {
+                Program.SelectedConfigName = selectedFile;
+                Program.SaveLastProfile(selectedFile);
+                Program.LoadConfig(Program.GetSelectedConfigPath(), true);
+                reload_CFG(null, null);
+            } 
+        } 
     }
 }

@@ -34,6 +34,7 @@
             richTextSlaveIP = new RichTextBox();
             richTextSlavePort = new RichTextBox();
             panel1 = new Panel();
+            comboBoxProfiles = new ComboBox();
             button5 = new Button();
             WanCheckBox = new CheckBox();
             label5 = new Label();
@@ -105,7 +106,7 @@
             richTextSlaveIP.BackColor = SystemColors.InfoText;
             richTextSlaveIP.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             richTextSlaveIP.ForeColor = Color.White;
-            richTextSlaveIP.Location = new Point(27, 170);
+            richTextSlaveIP.Location = new Point(27, 184);
             richTextSlaveIP.Name = "richTextSlaveIP";
             richTextSlaveIP.Size = new Size(130, 31);
             richTextSlaveIP.TabIndex = 0;
@@ -116,7 +117,7 @@
             richTextSlavePort.BackColor = SystemColors.InfoText;
             richTextSlavePort.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             richTextSlavePort.ForeColor = Color.White;
-            richTextSlavePort.Location = new Point(27, 222);
+            richTextSlavePort.Location = new Point(27, 236);
             richTextSlavePort.Name = "richTextSlavePort";
             richTextSlavePort.Size = new Size(130, 31);
             richTextSlavePort.TabIndex = 1;
@@ -126,6 +127,7 @@
             // panel1
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(comboBoxProfiles);
             panel1.Controls.Add(button5);
             panel1.Controls.Add(WanCheckBox);
             panel1.Controls.Add(label5);
@@ -143,6 +145,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(187, 444);
             panel1.TabIndex = 2;
+            panel1.Paint += panel1_Paint;
+            // 
+            // comboBoxProfiles
+            // 
+            comboBoxProfiles.FormattingEnabled = true;
+            comboBoxProfiles.Location = new Point(27, 5);
+            comboBoxProfiles.Name = "comboBoxProfiles";
+            comboBoxProfiles.Size = new Size(126, 23);
+            comboBoxProfiles.TabIndex = 8;
+            comboBoxProfiles.SelectedIndexChanged += ProfileChanged;
             // 
             // button5
             // 
@@ -160,7 +172,7 @@
             // WanCheckBox
             // 
             WanCheckBox.AutoSize = true;
-            WanCheckBox.Location = new Point(45, 267);
+            WanCheckBox.Location = new Point(45, 273);
             WanCheckBox.Name = "WanCheckBox";
             WanCheckBox.Size = new Size(88, 19);
             WanCheckBox.TabIndex = 10;
@@ -172,7 +184,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Impact", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(27, 12);
+            label5.Location = new Point(27, 35);
             label5.Name = "label5";
             label5.Size = new Size(126, 25);
             label5.TabIndex = 3;
@@ -207,7 +219,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(27, 48);
+            label4.Location = new Point(27, 62);
             label4.Name = "label4";
             label4.Size = new Size(65, 15);
             label4.TabIndex = 7;
@@ -218,7 +230,7 @@
             richTextHostname.BackColor = SystemColors.InfoText;
             richTextHostname.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             richTextHostname.ForeColor = Color.White;
-            richTextHostname.Location = new Point(27, 66);
+            richTextHostname.Location = new Point(27, 80);
             richTextHostname.Name = "richTextHostname";
             richTextHostname.Size = new Size(130, 31);
             richTextHostname.TabIndex = 6;
@@ -228,7 +240,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(27, 100);
+            label3.Location = new Point(27, 114);
             label3.Name = "label3";
             label3.Size = new Size(41, 15);
             label3.TabIndex = 5;
@@ -239,7 +251,7 @@
             richTextToken.BackColor = SystemColors.InfoText;
             richTextToken.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             richTextToken.ForeColor = Color.White;
-            richTextToken.Location = new Point(27, 118);
+            richTextToken.Location = new Point(27, 132);
             richTextToken.Name = "richTextToken";
             richTextToken.Size = new Size(130, 31);
             richTextToken.TabIndex = 4;
@@ -249,7 +261,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(27, 152);
+            label2.Location = new Point(27, 166);
             label2.Name = "label2";
             label2.Size = new Size(32, 15);
             label2.TabIndex = 3;
@@ -258,7 +270,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(27, 204);
+            label1.Location = new Point(27, 218);
             label1.Name = "label1";
             label1.Size = new Size(32, 15);
             label1.TabIndex = 2;
@@ -304,7 +316,7 @@
             label6.Name = "label6";
             label6.Size = new Size(75, 15);
             label6.TabIndex = 12;
-            label6.Text = "Version: 1.0.2";
+            label6.Text = "Version: 1.1.0";
             // 
             // panel2
             // 
@@ -356,7 +368,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Impact", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.Location = new Point(95, 0);
+            label7.Location = new Point(97, 0);
             label7.Name = "label7";
             label7.Size = new Size(75, 25);
             label7.TabIndex = 4;
@@ -875,5 +887,6 @@
         private Button eventButton30;
         private Button eventButton31;
         private Button eventButton32;
+        private ComboBox comboBoxProfiles;
     }
 }
